@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './Modules/user/user.component';
 import { PartialsModule } from './Partials/partials.module';
 import { RoleComponent } from './Modules/role/role.component';
+import { AuthenticationInterceptor } from './authentication-interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,10 @@ import { RoleComponent } from './Modules/role/role.component';
     HttpClientModule,
     PartialsModule
   ],
-  providers: [],
+  providers: [
+	  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

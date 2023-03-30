@@ -17,7 +17,7 @@ headers:any
 
   getList(): Observable<any> {
 
-      return this.http.get<any[]>(this.asSettingsService.apiUrl+this.endPoint + 'GetAll');
+      return this.http.get<any>(this.asSettingsService.apiUrl+this.endPoint + 'GetAll');
 
   }
 
