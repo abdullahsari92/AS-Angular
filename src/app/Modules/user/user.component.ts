@@ -44,9 +44,7 @@ export class UserComponent implements OnInit {
       console.log(' errr',err)
     })
   }
-
   
-
   
   add()
   {
@@ -62,7 +60,6 @@ export class UserComponent implements OnInit {
     this.user = user;
 
     this.userService.add(user).subscribe(res=>{
-
 
       if(!res.success)
       {
@@ -84,12 +81,13 @@ export class UserComponent implements OnInit {
     user.LastName="katman";
     user.Password="xvdgd4";
     user.Email="katman@gmail.com";
-
+    user.Id="3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
     this.userService.update(user).subscribe(res=>{
 
       console.log(' Guncellenen User: ',res)
     })
+
   }
   
 

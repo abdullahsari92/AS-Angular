@@ -1,25 +1,12 @@
-
-
-
-
 <br>
-
 <button (click)="add()">Kullanıcı Ekle </button>
-
-
 <br>
 <br>
 <br>
-
-
-
 
 <button (click)="update()">Kullanıcı Update </button>
 
-
 <a      [queryParams]="user"    routerLink="/user"       class="menu-link" >Kullanıcıları Getir </a>
-
 <a      [queryParams]="user"    routerLink="/role"       class="menu-link" >Roller Getir </a>
-
 
 <kt-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs"> </kt-custom-ag-grid>
