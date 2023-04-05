@@ -8,7 +8,7 @@ import { ImgViewer } from '../components-ag/img-viewer/img-viewer.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
-  selector: 'kt-custom-ag-grid',
+  selector: 'as-custom-ag-grid',
   templateUrl: './custom-ag-grid.component.html',
   styleUrls: ['./custom-ag-grid.component.scss']
 })

@@ -61,7 +61,11 @@ export class UserComponent implements OnInit {
 
     this.userService.add(user).subscribe(res=>{
 
-      if(!res.success)
+      if(res.result)
+      {
+        this.getlist();
+      }
+      else
       {
         alert("hatalı \n " + res.message);
       }
@@ -77,15 +81,21 @@ export class UserComponent implements OnInit {
     var user:any = {};
 
     user.username="mustafaKatman";
-    user.FirstName="mustafa";
+    user.FirstName="Nuri";
     user.LastName="katman";
     user.Password="xvdgd4";
     user.Email="katman@gmail.com";
-    user.Id="3fa85f64-5717-4562-b3fc-2c963f66afa6";
+    user.Id="2880d032-ee50-40aa-8dd8-5a91560722a6";
 
     this.userService.update(user).subscribe(res=>{
 
       console.log(' Guncellenen User: ',res)
+
+      if(res.result)
+
+      {
+        this.getlist();
+      }
     })
 
   }

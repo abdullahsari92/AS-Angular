@@ -8,6 +8,9 @@ import { UserComponent } from './Modules/user/user.component';
 import { PartialsModule } from './Partials/partials.module';
 import { RoleComponent } from './Modules/role/role.component';
 import { AuthenticationInterceptor } from './authentication-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './theme/material/material.module';
+import { ThemeModule } from './theme/theme.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { AuthenticationInterceptor } from './authentication-interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PartialsModule
+    PartialsModule,
+    BrowserAnimationsModule,
+    ThemeModule
   ],
   providers: [
 	  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },

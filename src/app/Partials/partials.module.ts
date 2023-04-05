@@ -16,6 +16,7 @@ import { ChangeStatusComponent } from './ag-grid/components-ag/change-status/cha
 
 
 import { FileViewerComponent } from './ag-grid/components-ag/file-viewer/file-viewer.component';
+import { MaterialModule } from '../theme/material/material.module';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { FileViewerComponent } from './ag-grid/components-ag/file-viewer/file-vi
 	],
 	imports: [
 		CommonModule,
+		MaterialModule,
 		AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
 	],
 })

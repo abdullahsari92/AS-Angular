@@ -1,0 +1,245 @@
+<div class="" style="background-color:#F7F7F7 0% 0% no-repeat padding-box;">
+    <mat-toolbar class="toolbar">
+      <!-- <img class="logo" src="../../../../assets/general/adminscope_logo.png" width="190px" height="58px"> -->
+      <span class="example-spacer"></span>
+  
+      <div class="input-group " style="width: 35%;  margin-top: 10px;  position: relative; " #elementSearch>
+  
+        <!-- <input type="text" [(ngModel)]="searchText" class="form-control" style=" background-color: #F4F4F4;
+        border-top-left-radius: 10px;   border-bottom-left-radius: 10px; height: 40px;" id="validationDefaultUsername"
+          placeholder="{{'TXT_SEARCH' | translate }}...">
+        <mat-icon *ngIf="isSearch"
+          style="font-size: 15px; cursor: pointer; font-weight: bold; position: absolute; top: 13px; right: 23px;"
+          (click)="searchClose()">close</mat-icon>
+  
+        <span class="serachIcon">
+          <mat-icon matSuffix style="font-size: 20px;" (click)="search()">search</mat-icon>
+        </span> -->
+        <mat-form-field appearance="outline" style="padding: 10px; width:100%; font-size: 12px;"
+          (click)="isActiveSearch=true" (mouseout)="isActiveSearch=false">
+          <mat-label>{{ "TXT_SEARCH"}}</mat-label>
+          <input matInput placeholder="{{'TXT_SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
+            [(ngModel)]="searchText">
+          <mat-icon matPrefix (click)="search()" [style.color]="isActiveSearch?'#00BAF1':''">search</mat-icon>
+          <mat-icon style="cursor: pointer;" *ngIf="isSearch" matSuffix (click)="searchClose()">close</mat-icon>
+        </mat-form-field>
+  
+  
+      </div>
+      <span class="example-spacer"></span>
+      <span class="">
+   
+
+  
+        <span  style="position: relative; " (click)="istutoriol =true" class="iconCerceve">
+          <img class="itemIcon" style="-webkit-mask: url('../../../../assets/svg/faq.svg') no-repeat 50% 50%" src=""
+            alt="">
+        </span>
+        <mat-menu #menuTutorials="matMenu">
+          <!-- <button mat-menu-item>
+            <span> FAQ </span>
+          </button> -->
+          <button mat-menu-item (click)="istutoriol =true" routerLink="/admin">
+            <span> {{'TXT_TUTORIALS'  }} </span>
+          </button>
+        </mat-menu>
+  
+        <!-- <app-tutoriol [tutoriolModel]="tutoriolModel" [userName]="tokenModel.user.name" (change)="tutoriolChange($event)"
+          (close)="istutoriol=false" *ngIf="istutoriol"> </app-tutoriol> -->
+  
+        <span #elementLang>
+          <button mat-button [matMenuTriggerFor]="menuLanguages" class="">
+            <img class="language" [src]="activeLanguage.flag">
+  
+          </button>
+  
+        </span>
+  
+        <mat-menu #menuLanguages="matMenu" class="menuLanguages">
+          <button mat-menu-item (click)="setLanguage(item)" *ngFor="let item of languages">
+            <img class="language" [src]="item.flag">
+            <span> {{item.name}} </span>
+          </button>
+        </mat-menu>
+  
+        <span #elementProfile>
+  
+          <button mat-button [matMenuTriggerFor]="menu">
+            <span style="font-size: 18px;">{{ this.tokenModel?.user?.name }} </span>
+            <span class="harfLogo" *ngIf="!this.tokenModel.user.profile_photo_file_uid">
+              {{basHarfLogo(tokenModel.user.name)}} </span>
+  
+            <img [src]="asSettingsService.fileBaseUrlOrjinal+tokenModel.user.profile_photo_file_uid" alt=""
+              *ngIf="this.tokenModel.user.profile_photo_file_uid" width="50px" height="50px" style="border-radius: 100%;">
+  
+          </button>
+        </span>
+  
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item  (click)="menuActive(99)" routerLink="user/profil/">
+            <mat-icon>account_box</mat-icon>
+            <span>{{'TXT_PROFILE'  }}</span>
+          </button>
+          <!-- <button mat-menu-item [matMenuTriggerFor]="menuSirket">
+            <mat-icon>apartment</mat-icon>
+            <span>Şirket Seçin</span>
+  
+          </button> -->
+          <button mat-menu-item  (click)="menuActive(99)"  routerLink="user/account/">
+            <mat-icon>settings</mat-icon>
+            <span>{{'TXT_ACCOUNT_SETTING'  }}</span>
+          </button>
+          <a mat-menu-item >
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{'TXT_LOG_OUT' }} </span>
+          </a>
+        </mat-menu>
+  
+
+      </span>
+  
+  
+    </mat-toolbar>
+  
+    <div class="toolbarMobil">
+      <div class="row " style="width: 100%; margin-top:10px; padding:0px">
+  
+        <!-- <div class="col-lg-3 col-md-6 col-sm-12 text-center ">
+          <img src="../../../../assets/general/adminscope_logo.png">
+        </div> -->
+  
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="background-color: #011E2B; position: fixed;    top: 0;
+        width: 100%; left: 0; z-index: 99;height: 70px; padding: 10px;" [class.headerMobil_set_open]="headerMobilOpen" [class.headerMobil_set_close]="!headerMobilOpen">
+  
+          <img src="../../../../assets/svg/adminscope_logo_beyaz.svg" (click)="headerMobilOpen=!headerMobilOpen"
+          width="150px" height="50px" alt="">
+  
+          <span #elementProfile style="position: absolute;   top: 10px; right: 0;"> 
+            <button mat-button [matMenuTriggerFor]="menu">
+  
+              <span class="harfLogo" *ngIf="!this.tokenModel.user.profile_photo_file_uid">
+                {{basHarfLogo(tokenModel.user.name)}}
+              </span>
+              <img [src]="asSettingsService.fileBaseUrlOrjinal+tokenModel.user.profile_photo_file_uid" alt=""
+                *ngIf="this.tokenModel.user.profile_photo_file_uid" width="50px" height="50px"
+                style="border-radius: 100%;">
+  
+            </button>
+            <mat-menu #menu="matMenu"  *ngIf="headerMobilOpen">
+              <button mat-menu-item routerLink="user/profil/">
+                <mat-icon>account_box</mat-icon>
+                <span>Bilgilerimi Güncelle</span>
+              </button>
+              <!-- <button mat-menu-item [matMenuTriggerFor]="menuSirket">
+                <mat-icon>apartment</mat-icon>
+                <span>Şirket Seçin</span>
+                </button> -->
+              <a mat-menu-item >
+                <mat-icon>exit_to_app</mat-icon>
+                <span>{{'TXT_LOG_OUT'  }} </span>
+              </a>
+            </mat-menu>
+    
+          </span>
+  
+  
+        
+  
+     
+  
+          <div class="col-lg-12"  [@openClose]="headerMobilOpen ? 'open' : 'closed'"  [class.headerMobil_sub_icon_open]="headerMobilOpen"  style="text-align: center; padding: 15px; ">
+  
+            <div style="text-align: center;">
+              <span style="font-size: 18px;color: white;">{{ this.tokenModel?.user?.name }} </span>
+    
+            </div>
+  
+    
+  
+  
+            <span [matMenuTriggerFor]="menuTutorials" style="position: relative; " class="iconCerceve">
+              <img class="itemIcon" style="-webkit-mask: url('../../../../assets/svg/faq.svg') no-repeat 50% 50%" src=""
+                alt="">
+            </span>
+            <mat-menu #menuTutorials="matMenu">
+              <!-- <button mat-menu-item>
+                <span> FAQ </span>
+              </button> -->
+              <button mat-menu-item (click)="istutoriol =true" routerLink="/admin">
+                <span> {{'TXT_TUTORIALS'  }} </span>
+              </button>
+            </mat-menu>       
+  
+            <span #elementLang>
+              <button mat-button [matMenuTriggerFor]="menuLanguages" class="">
+                <img class="language" [src]="activeLanguage.flag">
+  
+              </button>
+  
+            </span>
+  
+            <mat-menu #menuLanguages="matMenu" class="menuLanguages">
+              <button mat-menu-item (click)="setLanguage(item)" *ngFor="let item of languages">
+                <img class="language" [src]="item.flag">
+                <span> {{item.name}} </span>
+              </button>
+            </mat-menu>
+  
+  
+  
+            <mat-menu #menuSirket="matMenu" yPosition="below">
+              <button mat-menu-item *ngFor="let company of companyList" >
+                <mat-icon>business</mat-icon>
+                <span>{{company.company_name}} </span>
+              </button>
+  
+  
+            </mat-menu>
+          </div>
+  
+        </div>
+  
+  
+  
+        <div class="col-lg-12 col-md-12 col-sm-12  " [style.margin-top]="headerMobilOpen?'80px':'0'">
+          <div class="input-group " style="width: 95%; margin-left: 20px; margin-top: 60px;  position: relative; ">
+  
+            <mat-form-field appearance="outline" style="padding: 10px; width:100%; font-size: 12px;"
+              (click)="isActiveSearch=true" (mouseout)="isActiveSearch=false">
+              <mat-label>{{ "TXT_SEARCH" }}</mat-label>
+              <input matInput placeholder="{{'TXT_SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
+                [(ngModel)]="searchText">
+              <mat-icon matPrefix (click)="search()" [style.color]="isActiveSearch?'#00BAF1':''">search</mat-icon>
+              <mat-icon style="cursor: pointer;" *ngIf="isSearch" matSuffix (click)="searchClose()">close</mat-icon>
+            </mat-form-field>
+  
+       
+  
+  
+          </div>
+        </div>
+      </div>
+  
+  
+  
+  
+    </div>
+  
+    <app-menu (openSettingMenu)="getSettingMenu()" (close)="appPadding = $event"></app-menu>
+  
+ 
+    <div [style.padding-left]="appPadding && appPadding">
+      <div class="content-inside">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  
+  
+
+  </div>
+  
+  <div style="height: 40px;">
+  
+  </div>
+  
+  
