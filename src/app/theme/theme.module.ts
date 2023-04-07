@@ -8,17 +8,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MaterialModule } from './material/material.module';
+import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [MenuComponent, PrivateLayoutComponent, PublicLayoutComponent],
+  declarations: [MenuComponent, PrivateLayoutComponent, PublicLayoutComponent,MenuHorizontalComponent],
   imports: [
     CommonModule,   
    MaterialModule,
    RouterModule,HttpClientModule,
+   CoreModule
   ],
   exports: [
     MenuComponent,
     MaterialModule,
+    MenuHorizontalComponent
 
   ],
   providers: [

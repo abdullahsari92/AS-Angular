@@ -20,6 +20,12 @@ const routes: Routes = [
 
 
   ]},
+  
+  {  path:'', 
+  component:PrivateLayoutComponent ,children:[
+
+   {  path:'',   component:UserComponent},
+ ]},
 
 
 ];

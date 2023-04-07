@@ -11,6 +11,8 @@ import { AuthenticationInterceptor } from './authentication-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './theme/material/material.module';
 import { ThemeModule } from './theme/theme.module';
+import { CoreModule } from './core/core.module';
+import { MenuHorizontalService } from './core/services/menu-horizontal.service';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { ThemeModule } from './theme/theme.module';
     HttpClientModule,
     PartialsModule,
     BrowserAnimationsModule,
-    ThemeModule
+    ThemeModule,
+    CoreModule
   ],
   providers: [
 	  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+		MenuHorizontalService,
 
   ],
   bootstrap: [AppComponent]

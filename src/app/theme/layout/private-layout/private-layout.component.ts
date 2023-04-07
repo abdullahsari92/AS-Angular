@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TokenModel } from 'src/app/Model/tokenModel';
 import { TutoriolModel } from 'src/app/Model/tutoriolModel';
+import { MenuConfig } from 'src/app/core/config/menu.config';
+import { MenuConfigService } from 'src/app/core/services/menu-config.service';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { IdentityService } from 'src/app/services/identity.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -103,6 +105,7 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
     private cdf: ChangeDetectorRef,
     public asSettingsService: AsSettingsService,
     private menuSubjectService:MenuSubjectService,
+    private menuConfigService:MenuConfigService
 
 
   ) {
@@ -113,7 +116,8 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   ngOnInit(): void {
 
-    this.getTokenModel();
+
+    //this.getTokenModel();
 
     this.activeLanguage = this.languages.find(p => p.lang == 'tr')
    

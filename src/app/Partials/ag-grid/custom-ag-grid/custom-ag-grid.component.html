@@ -1,6 +1,6 @@
 
 	<div class="row align-items-center collapse kt-form__group-actions kt-margin-top-20 kt-margin-bottom-20"
-    [ngClass]="{'show' : selectedData.length >0 }"><!-- We show 'Group Actions' div if smth are selected -->
+    [ngClass]="{'show' : selectedData.length >0 }" *ngIf="selectedData.length >0"><!-- We show 'Group Actions' div if smth are selected -->
     <div class="col-xl-12">
         <div class="kt-form__group kt-form__group--inline">
                    <div class="kt-form__control kt-form__group--inline">
@@ -26,25 +26,6 @@
     </div>
 </div>
 
-
-<!-- <div class="row align-items-center  kt-margin-top-20 kt-margin-bottom-20">
-    <div class="col-xl-12">
-            <div class="kt-form__control kt-form__group--inline">
-            <button  mat-raised-button matTooltip="Fetch selected customers" class="mat-button-mt-4">
-                    <mat-icon>clear_all</mat-icon>
-                    Fetch Selected
-                </button>&nbsp;
-                <button (click)="getSelectedRows()" mat-raised-button matTooltip="Fetch selected customers" class="mat-button-mt-4">
-                    <mat-icon>clear_all</mat-icon>
-                             Model Selected 
-                </button>
-                <button (click)="onColumnMoved()" mat-raised-button matTooltip="Update status for selected customers"  class="mat-button-mt-4">
-                    <mat-icon>update</mat-icon>
-                    Save status Grid
-                </button>
-            </div>
-    </div>
-</div> -->
 
 <div class="row justify-content-center" *ngIf="!isSearch">
     <div class="col-lg-4" *ngIf="title!=''">

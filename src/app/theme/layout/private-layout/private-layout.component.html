@@ -225,9 +225,10 @@
   
     </div>
   
-    <app-menu (openSettingMenu)="getSettingMenu()" (close)="appPadding = $event"></app-menu>
+    <!-- <app-menu (openSettingMenu)="getSettingMenu()" (close)="appPadding = $event"></app-menu> -->
   
  
+    <kt-menu-horizontal></kt-menu-horizontal>
     <div [style.padding-left]="appPadding && appPadding">
       <div class="content-inside">
         <router-outlet></router-outlet>
