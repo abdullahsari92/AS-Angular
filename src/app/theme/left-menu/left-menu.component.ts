@@ -4,11 +4,12 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MenuSubjectService } from 'src/app/services/subject/menu-subject.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'as-left-menu',
+  templateUrl: './left-menu.component.html',
+  styleUrls: ['./left-menu.component.scss']
 })
-export class MenuComponent implements OnInit ,OnChanges{
+  
+export class LeftMenuComponent implements OnInit ,OnChanges {
   openedChildiren: any[] = [];
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() openSettingMenu: EventEmitter<any> = new EventEmitter();
@@ -31,7 +32,9 @@ export class MenuComponent implements OnInit ,OnChanges{
       icon: 'event', name: 'Roller',url:'/admin/role',noChild:true
     },
     {
-      icon: 'settings', name: 'Ayarlar',url:'admin/setting', noChild:true
+      icon: 'settings', name: 'Ayarlar',url:'admin/setting', submenu: [
+            { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
+             ]
     },  
     // {
     //   icon: 'company', name: 'TXT_COMPANY',url: 'fair/company/list',noChild:true
@@ -116,8 +119,9 @@ export class MenuComponent implements OnInit ,OnChanges{
 
   ngOnInit(): void {
 
-    this.filteredMenu = this.menu;
 
+    this.filteredMenu = this.menu;
+console.log('this.fildermenu ',this.filteredMenu)
     this.getScreenSize();
 
 

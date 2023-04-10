@@ -5,6 +5,20 @@
 		height: 100%;
 	}
 }
+.kt-aside--fixed .kt-aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
+}
+.kt-aside-dark .kt-aside {
+    background-color: #1e1e2d;
+}
+.kt-aside {
+    width: 265px;
+    transition: all 0.3s ease;
+}
 
 .kt-grid.kt-grid--hor-desktop.kt-grid--desktop > .kt-grid__item.kt-grid__item--fluid, .kt-grid.kt-grid--hor-desktop.kt-grid--desktop > .kt-grid__item.kt-grid__item--fluid-desktop {
     flex: 1 0 auto;

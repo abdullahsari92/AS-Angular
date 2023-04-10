@@ -37,14 +37,19 @@ export class MenuDirective implements AfterViewInit {
 	 * After view init
 	 */
 	ngAfterViewInit(): void {
+		console.log('this.el.nativeElement ',this.el.nativeElement)
 		this.setupOptions();
 		this.menu = new KTMenu(this.el.nativeElement, this.options);
+
+		console.log(' this.menu',this.menu)
 	}
 
 	/**
 	 * Return the menu
 	 */
 	getMenu() {
+
+
 		return this.menu;
 	}
 

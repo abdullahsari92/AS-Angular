@@ -10,9 +10,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
 import { CoreModule } from '../core/core.module';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
 
 @NgModule({
-  declarations: [MenuComponent, PrivateLayoutComponent, PublicLayoutComponent,MenuHorizontalComponent],
+  declarations: [MenuComponent, PrivateLayoutComponent, PublicLayoutComponent,MenuHorizontalComponent, LeftMenuComponent],
   imports: [
     CommonModule,   
    MaterialModule,
