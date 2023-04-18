@@ -14,6 +14,7 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() openSettingMenu: EventEmitter<any> = new EventEmitter();
 
+  isOpenSubMenu:string="";
 
   menuClass:string= 'imgYonDegistirme';
   menu: any[] = [
@@ -29,11 +30,26 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
       icon: 'tune', name: 'İzinler',url:'/admin/permission',noChild:true
     },
     {
-      icon: 'event', name: 'Roller',url:'/admin/role',noChild:true
+      icon: 'event', name: 'Roller',url:'#', submenu: [
+        { name: 'Listele', url: '/admin/role' },      
+        { name: 'Ekle', url: '/settings/sms-settings' },      
+
+    ]
     },
     {
-      icon: 'settings', name: 'Ayarlar',url:'admin/setting', submenu: [
-            { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
+      icon: 'settings', name: 'Ayarlar',url:'admin/setting', 
+      
+        submenu: [
+                 { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
+                 { name: 'Genel', url: '/settings/sms-settings',
+                      submenu: [
+                        { name: 'Arabalar', url: '/settings/sms-settings' },      
+                        { name: 'Temizlik', url: '/settings/sms-settings' },      
+      
+                    ]
+                
+                },      
+
              ]
     },  
     // {
@@ -132,10 +148,21 @@ console.log('this.fildermenu ',this.filteredMenu)
 
     console.log(' menu girdi',window.location)
     console.log(' menu girdichanges',changes)
-
-
     
   }
+
+  menuAktif(menu:any)
+  {
+
+
+    if(this.isOpenSubMenu==menu.name) this.isOpenSubMenu = "";
+
+    else
+      this.isOpenSubMenu=menu.name;
+
+  }
+
+
 
   getMenuOpen()
   {

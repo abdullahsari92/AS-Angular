@@ -12,7 +12,7 @@
     </span>
     <!-- <div class="flex flex-col">
         <br><br><br>
-        <div class="links" [style.height]="scrHeight+'px'">
+        <div class="menu-content" [style.height]="scrHeight+'px'">
             <div class="menu-item" *ngFor="let item of filteredMenu;let i = index;">
                 <div class="up" (click)="childrenStatus(i)" (click)="rootLink(item.url)">
                     <div [class.close-active-parent]="open===false" [class.open-active-parent]="open===true"
@@ -37,7 +37,7 @@
     </div> -->
 
 <div class="flex flex-col">
-    <div class="links" [style.height]="scrHeight+'px'">
+    <div class="menu-content" [style.height]="scrHeight+'px'">
         <br><br><br>
 
 
@@ -51,71 +51,68 @@
 
 </div>
 
-
-
 <ng-template #menuTemplate let-menu="item" let-parentItem="parentItem">
     <ng-container *ngIf="menu.submenu">
             <div class="up">    
-                <div [routerLink]="menu.url" class="child">
+                <div [routerLink]="menu.url" class="upMenu" (click)="menuAktif(menu)">
 
-                    <div class="menu-icon">
+                    <div *ngIf="menu.icon" class="menu-icon">
                         <mat-icon>{{menu.icon}} </mat-icon>
                     </div>
-                    <div class="menu-name">
+                    <div *ngIf="!menu.icon" >                       
+                       <div class="dot"></div>
+                    </div>
+                    
+                    <div class="menu-name ">
                         <span>{{menu.name}}</span>
-                    </div>             
+                    </div>
+                    <div class="leftArrow" >
+                      <mat-icon *ngIf="isOpenSubMenu == menu.name;">
+                                    expand_more
+                       </mat-icon>     
+                               <mat-icon *ngIf="isOpenSubMenu != menu.name;">                            
+                                chevron_right
+                           </mat-icon>    
+                    </div>                 
                 </div>
             </div>
+
+            <div class="subMenu" *ngIf="isOpenSubMenu == menu.name">     
+                <ng-container *ngFor="let submenu of menu.submenu;">
+                    <div>
+                        <ng-container  [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: submenu}"></ng-container>
+                    </div>
+                </ng-container>   
+           </div>
     </ng-container> 
 
   <ng-container *ngIf="!menu.submenu">
-            <div class="up">    
-                <div [routerLink]="menu.url" class="left">
 
-                    <div class="menu-icon">
-                        <mat-icon>{{menu.icon}} </mat-icon>
-                    </div>
-                    <div class="menu-name">
-                        <span style="font-size: 16px;">{{menu.name}}</span>
-                    </div>
-                </div>
-            </div>
+    <ng-container  [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: menu}"></ng-container>
+
    </ng-container> 
-
-
 </ng-template>
 
 
 <!-- sub-menu -->
-<ng-template #menuItemInnerTemplate let-item="item" let-parentItem="parentItem">
+<ng-template #menuItemInnerTemplate let-item="item" >
+	    <div class="up">    
+        <div [routerLink]="item.url" class="upMenu">
 	<!-- if menu item has icon -->
-	<i *ngIf="item.icon" class="kt-menu__link-icon" [ngClass]="item.icon"></i>
+            <div *ngIf="item.icon" class="menu-icon">
+                <mat-icon>{{item.icon}} </mat-icon>
+            </div>
+            <div *ngIf="!item.icon" >
+               
+               <div class="dot"></div>
+            </div>
 
-	<ng-container *ngIf="!item.icon">
-		<!-- if menu item using bullet -->
-		<i *ngIf="parentItem && parentItem.bullet === 'dot' || item.bullet === 'dot'" class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-			<span></span>
-		</i>
-		<i *ngIf="parentItem && parentItem.bullet === 'line' || item.bullet === 'line'" class="kt-menu__link-bullet kt-menu__link-bullet--line">
-			<span></span>
-		</i>
-	</ng-container>
+            <div class="menu-name">
+                {{item.name}}
+            </div>
 
-	<ng-container *ngIf="!item.badge; else menuLinkBadge">
-		<span class="kt-menu__item-here"></span>
-		<!-- menu item title text -->
-		<span class="kt-menu__link-text" [translate]="item.translate">
-			{{item.title}}
-		</span>
-	</ng-container>
-
-	<ng-template #menuLinkBadge>
-		<!-- menu item with badge -->
-		<span class="kt-menu__link-text" [translate]="item.translate">{{item.title}}</span>
-		<span class="kt-menu__link-badge">
-			<span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill" [ngClass]="item.badge.type" [translate]="item.badge.translate">{{item.badge.value}}</span>
-		</span>
-	</ng-template>
+        </div>
+    </div>
 </ng-template>
 
 
