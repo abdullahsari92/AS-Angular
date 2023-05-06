@@ -15,33 +15,41 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
   @Output() openSettingMenu: EventEmitter<any> = new EventEmitter();
 
   isOpenSubMenu:string="";
+  SelectedMenu:any[]=[];
+
 
   menuClass:string= 'imgYonDegistirme';
   menu: any[] = [
   
     {
-      icon: 'home', name: 'Ana Sayfa',url:'admin/',noChild:true
+      icon: 'home', root:true, name: 'Ana Sayfa',url:'admin/',noChild:true
     },
     {
-      icon: 'person', name: 'Kullanıcılar',url:'/admin/user',  noChild:true
-    },
-   
+      icon: 'person', root:true, name: 'Kullanıcılar',url:'/admin/user',  noChild:true
+    },   
     {
-      icon: 'tune', name: 'İzinler',url:'/admin/permission',noChild:true
+      icon: 'tune', root:true, name: 'İzinler',url:'/admin/permission',noChild:true
     },
     {
-      icon: 'event', name: 'Roller',url:'#', submenu: [
+      icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [
         { name: 'Listele', url: '/admin/role' },      
         { name: 'Ekle', url: '/settings/sms-settings' },      
 
     ]
     },
+    
     {
-      icon: 'settings', name: 'Ayarlar',url:'admin/setting', 
+      icon: 'settings', root:true, name: 'Ayarlar',url:'#', 
       
         submenu: [
+                 { name: 'SMS Ayarları', url: '/settings/sms-settings' },  
                  { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
-                 { name: 'Genel', url: '/settings/sms-settings',
+
+                 { name: 'Denge Ayarları', url: '/settings/sms-settings' },      
+
+                 { name: 'Rolle Ayarları', url: '/settings/sms-settings' },      
+
+                 { name: 'Genel Ayarlar', url: '#',
                       submenu: [
                         { name: 'Arabalar', url: '/settings/sms-settings' },      
                         { name: 'Temizlik', url: '/settings/sms-settings' },      
@@ -113,6 +121,7 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
   }
   emitOpen() {
 
+    this.SelectedMenu = [];
     if(!this.open && this.scrWidth < 768)
      {
       return  this.close.emit('0rem')
@@ -154,12 +163,42 @@ console.log('this.fildermenu ',this.filteredMenu)
   menuAktif(menu:any)
   {
 
+ 
+    var findMenu = this.SelectedMenu.find(p=>p.name ==menu.name && p.url == menu.url);
 
-    if(this.isOpenSubMenu==menu.name) this.isOpenSubMenu = "";
+    console.log('findMenu ',findMenu)
+    if(findMenu)    
+    {  
 
+      let index = this.SelectedMenu.indexOf(findMenu);
+      this.SelectedMenu.splice(index,1)
+
+    }      
     else
-      this.isOpenSubMenu=menu.name;
+    {
+      this.SelectedMenu.push(menu)  
+    }
 
+    if(!findMenu && menu.root)
+    {
+      this.SelectedMenu = [];
+
+      this.SelectedMenu.push(menu);
+    } 
+   
+
+console.log('SelectedMenu ',this.SelectedMenu)
+  }
+
+  isMenuActive(menu:any)
+  {
+
+    var findMenu = this.SelectedMenu.find(p=>p.name ==menu.name && p.url == menu.url);
+   // var findMenu = this.SelectedMenu.find(p=>p ==menu.name);
+
+   if(findMenu) return true;
+   return false;
+  
   }
 
 

@@ -1,5 +1,6 @@
 <div class="menu " [class.mobile-set-open]="open===true" [class.mobile-set-close]="open===false"
-    [class.closed]="open===false" (dblclick)="open=false;emitOpen()" (mouseenter)="open=true;emitOpen()">
+    [class.closed]="open===false" (dblclick)="open=false;emitOpen()">
+    <!-- (mouseenter)="open=true;emitOpen()"> -->
 
     <!-- <img class="logo" *ngIf="open" src="../../../assets/svg/fairscope_logo_beyaz.svg" width="190px" height="58px">
     <img class="logo" *ngIf="!open" src="../../../assets/svg/fairscope_logo_close.svg" width="80px" height="58px"> -->
@@ -53,31 +54,33 @@
 
 <ng-template #menuTemplate let-menu="item" let-parentItem="parentItem">
     <ng-container *ngIf="menu.submenu">
-            <div class="up">    
-                <div [routerLink]="menu.url" class="upMenu" (click)="menuAktif(menu)">
+            <div class="up" [class.active]="isMenuActive(menu)">    
+                <div  class="upMenu" (click)="menuAktif(menu)">
 
                     <div *ngIf="menu.icon" class="menu-icon">
                         <mat-icon>{{menu.icon}} </mat-icon>
                     </div>
                     <div *ngIf="!menu.icon" >                       
                        <div class="dot"></div>
-                    </div>
-                    
+                    </div>                    
                     <div class="menu-name ">
                         <span>{{menu.name}}</span>
                     </div>
-                    <div class="leftArrow" >
-                      <mat-icon *ngIf="isOpenSubMenu == menu.name;">
-                                    expand_more
-                       </mat-icon>     
-                               <mat-icon *ngIf="isOpenSubMenu != menu.name;">                            
+                    <div class="leftArrow" *ngIf="open" >
+                            <mat-icon *ngIf="isMenuActive(menu); else elseBlock;">
+                                            expand_more
+                            </mat-icon>
+                            <ng-template #elseBlock>
+                                     <mat-icon>                            
                                 chevron_right
-                           </mat-icon>    
+                             </mat-icon>   
+                            </ng-template>
+                                 
+                         
                     </div>                 
                 </div>
             </div>
-
-            <div class="subMenu" *ngIf="isOpenSubMenu == menu.name">     
+            <div class="subMenu" *ngIf="isMenuActive(menu)" >     
                 <ng-container *ngFor="let submenu of menu.submenu;">
                     <div>
                         <ng-container  [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: submenu}"></ng-container>
@@ -96,22 +99,19 @@
 
 <!-- sub-menu -->
 <ng-template #menuItemInnerTemplate let-item="item" >
-	    <div class="up">    
-        <div [routerLink]="item.url" class="upMenu">
-	<!-- if menu item has icon -->
-            <div *ngIf="item.icon" class="menu-icon">
-                <mat-icon>{{item.icon}} </mat-icon>
+	    <div class="up"  [class.active]="isMenuActive(item)">    
+            <div [routerLink]="item.url" class="upMenu" (click)="menuAktif(item)">
+        <!-- if menu item has icon -->
+                <div *ngIf="item.icon" class="menu-icon">
+                    <mat-icon>{{item.icon}} </mat-icon>
+                </div>
+                <div *ngIf="!item.icon" >                
+                   <div class="dot"></div>
+                </div>
+                <div class="menu-name">
+                    {{item.name}}
+                </div>
             </div>
-            <div *ngIf="!item.icon" >
-               
-               <div class="dot"></div>
-            </div>
-
-            <div class="menu-name">
-                {{item.name}}
-            </div>
-
-        </div>
     </div>
 </ng-template>
 
