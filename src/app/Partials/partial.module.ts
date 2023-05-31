@@ -35,5 +35,5 @@ import { MaterialModule } from '../theme/material/material.module';
 		AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
 	],
 })
-export class PartialsModule {
+export class PartialModule {
 }

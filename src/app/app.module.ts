@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './Modules/user/user.component';
-import { PartialsModule } from './Partials/partials.module';
+import { PartialModule } from './Partials/partial.module';
 import { RoleComponent } from './Modules/role/role.component';
 import { AuthenticationInterceptor } from './authentication-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +24,7 @@ import { MenuHorizontalService } from './core/services/menu-horizontal.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PartialsModule,
+    PartialModule,
     BrowserAnimationsModule,
     ThemeModule,
     CoreModule
