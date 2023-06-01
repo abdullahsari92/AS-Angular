@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PermissionComponent } from './permission.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ThemeModule } from 'src/app/theme/theme.module';
 import { PartialModule } from 'src/app/Partials/partial.module';
+import { PermissionComponent } from './permission.component';
 
 
 
@@ -14,6 +14,7 @@ const routes: Routes = [
 
 ];
 
+
 @NgModule({
   declarations: [PermissionComponent],
   imports: [
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     ThemeModule,    
     PartialModule,
+    
   ]
 })
 export class PermissionModule { }

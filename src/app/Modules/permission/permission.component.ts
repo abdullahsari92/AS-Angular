@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PermissionService } from 'src/app/services/permission.service';
 
 @Component({
   selector: 'as-permission',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./permission.component.scss']
 })
 
-export class UserComponent implements OnInit {
+export class PermissionComponent implements OnInit {
 
 
   rowData:any;
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
    */
   constructor(
 
-     private permis:UserService
+     private permissionService:PermissionService
   ) {
         
   }
@@ -35,7 +36,7 @@ export class UserComponent implements OnInit {
   getlist()
   {
 
-    this.userService.getList().subscribe(res=>{
+    this.permissionService.getList().subscribe(res=>{
 
       this.rowData = res.data.items;
 
@@ -45,34 +46,8 @@ export class UserComponent implements OnInit {
     })
   }
   
-  
-  add()
-  {
+ 
 
-    
-
-    this.userService.add(user).subscribe(res=>{
-
-      if(res.result)
-      {
-        this.getlist();
-      }
-      else
-      {
-        alert("hatalı \n " + res.message);
-      }
-      console.log(' Eklenen User: ',res)
-    })
-  }
-
-
-    
-  update()
-  {
-
-    
-
-  }
   
 
   agGridInit() {
