@@ -1,0 +1,50 @@
+<div class="modalBody">
+
+
+    <div class="header" style="padding-bottom: 10px;"> 
+    
+      <div style="  margin: 0 -20px;">
+        <span *ngIf="!this.data.user2">{{'TXT_ADD_NEW_CONTACT' | translate}} </span>
+        <span *ngIf="this.data.user2">{{'TXT_EDIT_CONTACT_PROFILE' | translate}} </span>
+        <span [mat-dialog-close]="data.animal" style=" position: absolute;  top: 10px;right: -20px;">
+          <mat-icon> close</mat-icon>
+        </span>
+      </div>   
+    </div>
+            <div class="manuelAdd" *ngIf="!this.data.user2">       
+                    <div class="" style="padding: 2%;">                
+                        <form class="form text-center "  action="" [formGroup]="permissionForm">
+                            <div class=" text-center">
+                                <app-img-upload [imgURL]="imgUrl" controlName="file_data" typeName="file_ext" ></app-img-upload>
+                            </div>
+                            <br>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <input matInput autocomplete="off" formControlName="name">
+                                <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
+                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                </mat-error> 
+                            </mat-form-field>                        
+                           
+                        </form>
+                    </div>     
+
+            </div>    
+
+
+<div class="rightCrudBtn">
+    <button mat-button [mat-dialog-close]="data.animal">{{'TXT_CLOSE' | translate }}</button>
+
+    <button mat-button class="btnSave" type="submit" (click)="save()">
+       {{'TXT_SAVE' | translate }}
+    </button>     
+</div>
+
+
+
+
+</div>  
+
+
+
+

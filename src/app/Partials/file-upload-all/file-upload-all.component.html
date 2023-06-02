@@ -1,0 +1,103 @@
+
+
+<div style="position: relative; margin: 1px;">
+    <div [fileUploadInputFor]="fileUploadQueue"  [style.min-height]="height" aria-disabled="true" (onFileSelected)="onFileDragDrop($event)"
+    class="upload-drop-zone text-center">
+    <br>
+    <br>
+    <span *ngIf="resultFiles.length==0 && !imgURL" class="UstAciklama" style="font-weight: 500;">      
+        {{'TXT_DRAG_DROP' | translate }}
+    </span>
+
+    
+    <div class="yuklenecekDosyalar text-center "> 
+        <label class="yuklenecekDosya" *ngFor="let item of resultFiles let i=index">
+            <mat-icon (click)="removeItem(i)">close</mat-icon>
+            <img src="../../../assets/svg/kiosk_library.svg" alt="" style="margin-right: 12px;">        
+           <span> {{ strCat(item.description)}} </span> 
+           <span  style="position: absolute; top: 10px; right:60px; color: #888888; font-size: 12px;">{{getSize(item.file_size)}} </span> 
+
+
+           <span *ngIf="isStartUpload">
+
+           <mat-progress-bar *ngIf="item.isUpload==0" mode="indeterminate"></mat-progress-bar>
+
+            <mat-icon  *ngIf="item.isUpload==1" style="color: #2ebb1b; right:30px;" (click)="removeItem(i)">done</mat-icon>
+
+            <span *ngIf="item.isUpload==2" style=" position: absolute; top: 6px; right:105px; background: #FF4F1A1A; padding: 5px; color: #FF4F1A; border-radius: 5px;"> 
+              
+                <span matTooltip="{{item.errorMessage}}" matTooltipPosition="above"  matTooltipClass="faild-btn-red">
+                    Failed </span>  
+
+            </span>
+            <mat-icon  *ngIf="item.isUpload==2" style="color: #FF4F1A; right:30px;" (click)="save(item)">cached</mat-icon>
+ 
+           </span>
+    
+        </label>
+    </div>
+    <div class="text-center" *ngIf="resultFiles.length>0 && isSaveButton"  style="position: absolute; bottom: 20px; right: 20px;" >
+
+        <button mat-button  (click)="cancel()"> {{'TXT_CANCEL' | translate }} </button>
+        <button  mat-button (click)="saveAll()" style="padding: 0px 15px;" class="btnSave"> {{'TXT_SAVE' | translate }} </button>
+        <br>
+    </div>
+
+    <div *ngIf="!multiple && imgURL" style="position: absolute;  bottom: 15px;  width: 100%;">
+
+        <img [src]="imgURL" alt="" width="100px" >
+
+        <mat-icon  style="color: red; right:30px; cursor: pointer; margin-right: 10px; font-size: 18px;" (click)="removeImgURL()">cancel</mat-icon>
+
+
+    </div>
+
+</div>
+
+<!-- top:70%; left:44%; -->
+<div style="position: absolute; top:47%; left:0%; width: 100%;  text-align: center;" *ngIf="resultFiles.length==0 && !imgURL">
+    <span class="file is-normal text-center ">
+        <label class="file-label ">
+            <input class="file-input " type="file" (change)="onFileDragDrop1($event)" name="resume"  multiple="multiple">
+            <!-- <span>
+                click to browse..
+            </span> -->
+            <span class="actionBtn" style="padding: 11px;" >
+                <mat-icon style="vertical-align: bottom;">add</mat-icon> {{buttonName | translate }}
+              </span>
+        </label>
+            <br>
+     
+    </span>
+</div>
+<div class="altAciklama" *ngIf="resultFiles.length==0 && !imgURL">
+    <span style="color: #888888; font-size: 11px;">
+        File should be “.png .pdf. jpeg . mp4 .docx .xlsx” and Max. Size : 200 MB
+    </span> 
+
+</div>
+
+<input type="hidden" [formControlName]="controlName" [name]="controlName">
+<input type="hidden" [formControlName]="typeName" [name]="typeName">
+
+
+
+<div style="width:30%">
+    <!-- <mat-file-upload-queue #fileUploadQueue  
+        [fileAlias]="'file'"
+        [httpUrl]="'https://apifairscope.cevizyazilim.com/v100/user_files/upload'" multiple>
+
+     
+
+            <mat-file-upload [file]="file"  (removeEvent)="imgURL=''"  [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index">    </mat-file-upload>
+
+       
+    </mat-file-upload-queue> -->
+
+    <mat-error *ngIf="isFileControlHasError">
+        <strong>jpg,PNG,jpeg,pdf,docx,xlsx ,mp4 haricinde dosya yükleyemezsiniz.</strong>
+    </mat-error>
+</div>
+
+</div>
+
