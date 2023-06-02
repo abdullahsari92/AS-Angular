@@ -28,7 +28,7 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
       icon: 'person', root:true, name: 'Kullanıcılar',url:'/admin/user',  noChild:true
     },   
     {
-      icon: 'tune', root:true, name: 'İzinler',url:'/admin/permission',noChild:true
+      icon: 'tune', root:true, name: 'Yetkiler',url:'/admin/permission',noChild:true
     },
     {
       icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [

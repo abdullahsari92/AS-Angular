@@ -1,0 +1,32 @@
+
+<span>
+    <img src="../../../assets/general/avatar.png" width="70px" height="70px"  *ngIf="!imgURL" alt="">
+    <img  [src]="imgURL"  width="70px" height="70px" style="border-radius: 100%;" *ngIf="imgURL" alt="">
+
+    <div class="file is-normal text-center ">
+
+        
+            <label class="file-label">
+                <input class="file-input " type="file" (change)="onFileChance($event)" name="resume" >
+                <span>
+                    <img style="border:1.5px solid #70BD88;padding: 4px;margin-right: 4px; background-color: white; z-index: 99;" src="../../../../../assets/svg/add_btn-green.svg">
+    
+                </span>
+            </label>
+     
+   
+    </div>
+</span>
+
+
+<input type="hidden" [formControlName]="controlName" [name]="controlName">
+<input type="hidden" [formControlName]="typeName" [name]="typeName">
+
+
+
+<div style="width:100%" *ngIf="isFileControlHasError">
+
+<mat-error >
+    <strong>jpg,PNG,jpeg haricinde dosya yükleyemezsiniz.</strong>
+</mat-error>
+</div>

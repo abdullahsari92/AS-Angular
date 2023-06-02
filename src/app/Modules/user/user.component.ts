@@ -61,7 +61,7 @@ export class UserComponent implements OnInit {
 
     this.userService.add(user).subscribe(res=>{
 
-      if(res.result)
+      if(res.success)
       {
         this.getlist();
       }
@@ -91,7 +91,7 @@ export class UserComponent implements OnInit {
 
       console.log(' Guncellenen User: ',res)
 
-      if(res.result)
+      if(res.success)
 
       {
         this.getlist();

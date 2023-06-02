@@ -17,12 +17,16 @@ import { ChangeStatusComponent } from './ag-grid/components-ag/change-status/cha
 
 import { FileViewerComponent } from './ag-grid/components-ag/file-viewer/file-viewer.component';
 import { MaterialModule } from '../theme/material/material.module';
+import { ImgUploadComponent } from './img-upload/img-upload.component';
+import { FileUploadAllComponent } from './file-upload-all/file-upload-all.component';
 
 @NgModule({
 	declarations: [
 		AgGridActionComponent,
 		ChangeStatusComponent,
-		CustomAgGridComponent
+		CustomAgGridComponent,
+		ImgUploadComponent,
+		FileUploadAllComponent
 	],
 	exports: [
 		AgGridModule,
@@ -35,5 +39,5 @@ import { MaterialModule } from '../theme/material/material.module';
 		AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
 	],
 })
-export class PartialsModule {
+export class PartialModule {
 }

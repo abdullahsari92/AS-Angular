@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TokenModel } from 'src/app/Model/tokenModel';
 import { TutoriolModel } from 'src/app/Model/tutoriolModel';
-import { MenuConfig } from 'src/app/core/config/menu.config';
 import { MenuConfigService } from 'src/app/core/services/menu-config.service';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { IdentityService } from 'src/app/services/identity.service';

@@ -1,0 +1,33 @@
+<div class="pageTitle">
+
+    {{'TXT_LIBRARY'  }}
+  
+  </div>
+    <div class="row justify-content-end " style="position: relative;">
+      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
+        <div
+          style=" background-color: white; padding: 10px;  text-align: left; height: 44px; border-radius: 5px;">
+          <span style="font-size: 12px;color: #011E2B;font-weight: 500;">
+           GB {{'TXT_USED_STORAGE'  }}
+          </span>
+          <div class="mbCerceve">
+            <div class="text-center" >
+            </div>
+          </div>
+          <!-- <div style="float: left;  font-size: 12px; font-weight: 500; line-height: 16px;    color: #E0E0E0;">    
+      </div> -->
+        </div>
+      </div>
+      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-icon matPrefix>search</mat-icon>
+          <mat-label>{{ "TXT_SEARCH" }}...</mat-label>
+          <input matInput  autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
+<as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs"> </as-custom-ag-grid>
