@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit ,OnChanges{
       icon: 'settings', name: 'Ayarlar',url:'admin/setting', noChild:true
     },  
     // {
-    //   icon: 'company', name: 'TXT_COMPANY',url: 'fair/company/list',noChild:true
+    //   icon: 'company', name: 'TEXT.COMPANY',url: 'fair/company/list',noChild:true
     // },
 
     // {

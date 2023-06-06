@@ -13,7 +13,12 @@ const routes: Routes = [
     {  path:'role',   component:RoleComponent },
   
      {path:"user",loadChildren: () =>import('./Modules/user/user.module').then(m=>m.UserModule)},
+
      {path:"permission",loadChildren: () =>import('./Modules/permission/permission.module').then(m=>m.PermissionModule)},
+
+     {path:"language",loadChildren: () =>import('./Modules/language/language.module').then(m=>m.LanguageModule)},
+     {path:"menu",loadChildren: () =>import('./Modules/menu/menu.module').then(m=>m.MenuModule)},
+
 
     
 

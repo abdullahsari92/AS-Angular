@@ -50,7 +50,7 @@ export class FileUploadAllComponent implements OnInit,AfterViewInit {
 	@Input() multiple: boolean=true;
 	@Input() height: any="180px";
 
-	@Input() buttonName: string="TXT_ADD_DOCUMENT";
+	@Input() buttonName: string="TEXT.ADD_DOCUMENT";
   
  resultFiles: FileResult[] = [];
  fileResult!:FileResult;

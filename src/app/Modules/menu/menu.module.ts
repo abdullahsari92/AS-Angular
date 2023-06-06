@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LanguageComponent } from './language.component';
+import { MenuComponent } from './menu.component';
 import { AddComponent } from './add/add.component';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { PartialsModule } from 'src/app/Partials/partials.module';
 
 
 const routes: Routes = [
 	
-  {path:"",component:LanguageComponent},
-  {path:"List",component:LanguageComponent},
+  {path:"",component:MenuComponent},
+  {path:"List",component:MenuComponent},
   {path:"Add",component:AddComponent}
 
 
@@ -17,7 +17,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [LanguageComponent, AddComponent],
+  declarations: [MenuComponent, AddComponent],
   imports: [
    RouterModule.forChild(routes),
     CommonModule,  
@@ -25,4 +25,4 @@ const routes: Routes = [
     
   ]
 })
-export class LanguageModule { }
+export class MenuModule { }

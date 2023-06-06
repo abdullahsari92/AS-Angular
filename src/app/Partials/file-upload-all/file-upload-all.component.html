@@ -6,7 +6,7 @@
     <br>
     <br>
     <span *ngIf="resultFiles.length==0 && !imgURL" class="UstAciklama" style="font-weight: 500;">      
-        {{'TXT_DRAG_DROP' | translate }}
+        {{'TEXT.DRAG_DROP' | translate }}
     </span>
 
     
@@ -38,8 +38,8 @@
     </div>
     <div class="text-center" *ngIf="resultFiles.length>0 && isSaveButton"  style="position: absolute; bottom: 20px; right: 20px;" >
 
-        <button mat-button  (click)="cancel()"> {{'TXT_CANCEL' | translate }} </button>
-        <button  mat-button (click)="saveAll()" style="padding: 0px 15px;" class="btnSave"> {{'TXT_SAVE' | translate }} </button>
+        <button mat-button  (click)="cancel()"> {{'TEXT.CANCEL' | translate }} </button>
+        <button  mat-button (click)="saveAll()" style="padding: 0px 15px;" class="btnSave"> {{'TEXT.SAVE' | translate }} </button>
         <br>
     </div>
 

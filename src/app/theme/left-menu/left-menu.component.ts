@@ -31,6 +31,12 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
       icon: 'tune', root:true, name: 'Yetkiler',url:'/admin/permission',noChild:true
     },
     {
+      icon: 'menu', root:true, name: 'Menu',url:'/admin/menu',noChild:true
+    },
+    {
+      icon: 'language', root:true, name: 'Diller',url:'/admin/language',noChild:true
+    },
+    {
       icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [
         { name: 'Listele', url: '/admin/role' },      
         { name: 'Ekle', url: '/settings/sms-settings' },      
@@ -61,7 +67,7 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
              ]
     },  
     // {
-    //   icon: 'company', name: 'TXT_COMPANY',url: 'fair/company/list',noChild:true
+    //   icon: 'company', name: 'TEXT.COMPANY',url: 'fair/company/list',noChild:true
     // },
 
     // {

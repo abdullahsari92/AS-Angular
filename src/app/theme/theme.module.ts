@@ -18,14 +18,12 @@ import {  PartialsModule } from '../Partials/partials.module';
      LeftMenuComponent,],
   imports: [
     CommonModule,   
-   MaterialModule,
    RouterModule,HttpClientModule,
    CoreModule,
    PartialsModule
   ],
   exports: [
     MenuComponent,
-    MaterialModule,
     MenuHorizontalComponent,
     
 

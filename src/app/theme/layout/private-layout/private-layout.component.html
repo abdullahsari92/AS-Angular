@@ -7,7 +7,7 @@
   
         <!-- <input type="text" [(ngModel)]="searchText" class="form-control" style=" background-color: #F4F4F4;
         border-top-left-radius: 10px;   border-bottom-left-radius: 10px; height: 40px;" id="validationDefaultUsername"
-          placeholder="{{'TXT_SEARCH' | translate }}...">
+          placeholder="{{'TEXT.SEARCH' | translate }}...">
         <mat-icon *ngIf="isSearch"
           style="font-size: 15px; cursor: pointer; font-weight: bold; position: absolute; top: 13px; right: 23px;"
           (click)="searchClose()">close</mat-icon>
@@ -17,8 +17,8 @@
         </span> -->
         <mat-form-field appearance="outline" style="padding: 10px; width:100%; font-size: 12px;"
           (click)="isActiveSearch=true" (mouseout)="isActiveSearch=false">
-          <mat-label>{{ "TXT_SEARCH"}}</mat-label>
-          <input matInput placeholder="{{'TXT_SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
+          <mat-label>{{ "TEXT.SEARCH"}}</mat-label>
+          <input matInput placeholder="{{'TEXT.SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
             [(ngModel)]="searchText">
           <mat-icon matPrefix (click)="search()" [style.color]="isActiveSearch?'#00BAF1':''">search</mat-icon>
           <mat-icon style="cursor: pointer;" *ngIf="isSearch" matSuffix (click)="searchClose()">close</mat-icon>
@@ -40,7 +40,7 @@
             <span> FAQ </span>
           </button> -->
           <button mat-menu-item (click)="istutoriol =true" routerLink="/admin">
-            <span> {{'TXT_TUTORIALS'  }} </span>
+            <span> {{'TEXT.TUTORIALS'  }} </span>
           </button>
         </mat-menu>
   
@@ -78,7 +78,7 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item  (click)="menuActive(99)" routerLink="user/profil/">
             <mat-icon>account_box</mat-icon>
-            <span>{{'TXT_PROFILE'  }}</span>
+            <span>{{'TEXT.PROFILE'  }}</span>
           </button>
           <!-- <button mat-menu-item [matMenuTriggerFor]="menuSirket">
             <mat-icon>apartment</mat-icon>
@@ -87,11 +87,11 @@
           </button> -->
           <button mat-menu-item  (click)="menuActive(99)"  routerLink="user/account/">
             <mat-icon>settings</mat-icon>
-            <span>{{'TXT_ACCOUNT_SETTING'  }}</span>
+            <span>{{'TEXT.ACCOUNT_SETTING'  }}</span>
           </button>
           <a mat-menu-item >
             <mat-icon>exit_to_app</mat-icon>
-            <span>{{'TXT_LOG_OUT' }} </span>
+            <span>{{'TEXT.LOG_OUT' }} </span>
           </a>
         </mat-menu>
   
@@ -136,7 +136,7 @@
                 </button> -->
               <a mat-menu-item >
                 <mat-icon>exit_to_app</mat-icon>
-                <span>{{'TXT_LOG_OUT'  }} </span>
+                <span>{{'TEXT.LOG_OUT'  }} </span>
               </a>
             </mat-menu>
     
@@ -166,7 +166,7 @@
                 <span> FAQ </span>
               </button> -->
               <button mat-menu-item (click)="istutoriol =true" routerLink="/admin">
-                <span> {{'TXT_TUTORIALS'  }} </span>
+                <span> {{'TEXT.TUTORIALS'  }} </span>
               </button>
             </mat-menu>       
   
@@ -206,8 +206,8 @@
   
             <mat-form-field appearance="outline" style="padding: 10px; width:100%; font-size: 12px;"
               (click)="isActiveSearch=true" (mouseout)="isActiveSearch=false">
-              <mat-label>{{ "TXT_SEARCH" }}</mat-label>
-              <input matInput placeholder="{{'TXT_SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
+              <mat-label>{{ "TEXT.SEARCH" }}</mat-label>
+              <input matInput placeholder="{{'TEXT.SEARCH' }}" (keyup.enter)="search()" autocomplete="off"
                 [(ngModel)]="searchText">
               <mat-icon matPrefix (click)="search()" [style.color]="isActiveSearch?'#00BAF1':''">search</mat-icon>
               <mat-icon style="cursor: pointer;" *ngIf="isSearch" matSuffix (click)="searchClose()">close</mat-icon>

@@ -29,6 +29,7 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 		TranslatePipe,
 		ImgUploadComponent,
 		FileUploadAllComponent,
+		MaterialModule
 		
 	],
 	imports: [

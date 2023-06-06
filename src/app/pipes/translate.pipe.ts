@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { LocalStorageService } from '../services/local-storage.service';
 import { TranslateService } from '../services/translate.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Pipe({
   name: 'translate',
@@ -8,6 +9,10 @@ import { TranslateService } from '../services/translate.service';
 })
 export class TranslatePipe implements PipeTransform {
 
+  
+  private languagesSubject = new BehaviorSubject<any>([]);
+
+  translation:any;
   constructor(
 
     private translate:TranslateService,
@@ -15,10 +20,10 @@ export class TranslatePipe implements PipeTransform {
   ){
 
   }  
-  transform(key: any): any {
+  transform2(key: any): any {
 
     
-   var code =   this.localStorageService.getItem("langType");
+   var code =   this.localStorageService.getItem("language");
     
     this.translate.use(code);
 
@@ -27,4 +32,30 @@ export class TranslatePipe implements PipeTransform {
     else
         return key;
   }
+
+
+  transform(key: any): any {
+
+    
+    var lang =   this.localStorageService.getItem("language");
+     
+    this.translation =  this.localStorageService.getItem("languagesDefitions");
+
+    if(lang)
+    {
+      if(this.translation[key])
+      {
+        return  this.translation[key][lang];
+  
+      }
+      else
+      {
+         return key;
+      }
+  
+    }
+   }
+ 
+
+ 
 }

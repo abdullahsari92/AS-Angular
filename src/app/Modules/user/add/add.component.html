@@ -4,8 +4,8 @@
     <div class="header" style="padding-bottom: 10px;"> 
     
       <div style="  margin: 0 -20px;">
-        <span *ngIf="!this.data.user2">{{'TXT_ADD_NEW_CONTACT' | translate}} </span>
-        <span *ngIf="this.data.user2">{{'TXT_EDIT_CONTACT_PROFILE' | translate}} </span>
+        <span *ngIf="!this.data.user2">{{'TEXT.ADD_NEW_CONTACT' | translate}} </span>
+        <span *ngIf="this.data.user2">{{'TEXT.EDIT_CONTACT_PROFILE' | translate}} </span>
         <span [mat-dialog-close]="data.animal" style=" position: absolute;  top: 10px;right: -20px;">
           <mat-icon> close</mat-icon>
         </span>
@@ -21,33 +21,33 @@
                             </div>
                             <br>
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="asSettinsService.isControlHasError('name','required',UserForm)">
-                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>
                                          
                  
                             <mat-form-field appearance="outline"  style="width: 48%;">
-                                <mat-label>{{"TXT_COMPANY_NAME" | translate}}</mat-label>
+                                <mat-label>{{"TEXT.COMPANY_NAME" | translate}}</mat-label>
                                 <input matInput formControlName="company_name" autocomplete="off">
 
                                 <mat-error *ngIf="asSettinsService.isControlHasError('company_name','maxlength',UserForm)">
-                                  <strong>{{ 'TXT_MAX_LENGTH_FIELD' | translate }} 50</strong>
+                                  <strong>{{ 'TEXT.MAX_LENGTH_FIELD' | translate }} 50</strong>
                                 </mat-error>
                             </mat-form-field>
 
 
                             <mat-form-field appearance="outline" style="width: 48%;margin-left: 4%;">
-                                <mat-label>{{'TXT_POSITION' | translate }}</mat-label>
+                                <mat-label>{{'TEXT.POSITION' | translate }}</mat-label>
                                 <input matInput autocomplete="off" formControlName="position">
                                 <mat-error *ngIf="asSettinsService.isControlHasError('position','maxlength',UserForm)">
-                                  <strong>{{ 'TXT_MAX_LENGTH_FIELD' | translate }} 50</strong>
+                                  <strong>{{ 'TEXT.MAX_LENGTH_FIELD' | translate }} 50</strong>
                                 </mat-error>
                             </mat-form-field>
                             <!-- <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{'TXT_COUNTRY' | translate }}</mat-label>
+                                <mat-label>{{'TEXT.COUNTRY' | translate }}</mat-label>
                                 <mat-select formControlName="country_iso_code_2">
                                     <mat-option *ngFor="let country of countriesList" [value]="country.iso_code_2">
                                         {{country.name}}
@@ -64,10 +64,10 @@
   
 
 <div class="rightCrudBtn">
-    <button mat-button [mat-dialog-close]="data.animal">{{'TXT_CLOSE' | translate }}</button>
+    <button mat-button [mat-dialog-close]="data.animal">{{'TEXT.CLOSE' | translate }}</button>
 
     <button mat-button class="btnSave" type="submit" (click)="submit()">
-       {{'TXT_SAVE' | translate }}
+       {{'TEXT.SAVE' | translate }}
     </button>     
 </div>
 

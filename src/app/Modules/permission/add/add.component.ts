@@ -123,7 +123,7 @@ export class AddComponent {
           data: res.data
         });
         // Swal.fire({
-        //   title: this.translate.getValue("TXT_TRANSACTION_SUCCESSFUL"),
+        //   title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
         //   icon: 'success',
         //   showConfirmButton: false,
         //   timer: 2500
@@ -184,7 +184,7 @@ export class AddComponent {
       }
       else {
         // Swal.fire({
-        //   //title: this.translateService.getValue("TXT_TRANSACTION_SUCCESSFUL"),
+        //   //title: this.translateService.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
         //   icon: 'error',
         //   html:this.translate.getValue(res.error.code) + "<br>" + this.asSettingsService.hataObjectGoster(res.error),
         //   showConfirmButton: true,

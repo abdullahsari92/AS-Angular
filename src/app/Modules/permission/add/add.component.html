@@ -4,7 +4,7 @@
     <div class="header" style="padding-bottom: 10px;"> 
     
       <div style="  margin: 0 -20px;">
-        <span >{{'TXT_ADD_PERMISSION' | translate}} </span>
+        <span >{{'TEXT.ADD_PERMISSION' | translate}} </span>
        
         <span [mat-dialog-close]="data.animal" style=" position: absolute;  top: 10px;right: -20px;">
           <mat-icon> close</mat-icon>
@@ -17,32 +17,32 @@
                     
                             <br>
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>           
                             
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>     
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>     
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TXT_NAME" | translate}}</mat-label>
+                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TXT_Required' | translate }}</strong>
+                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>     
                            
@@ -54,10 +54,10 @@
 
             
 <div class="rightCrudBtn">
-    <button mat-button [mat-dialog-close]="data.animal">{{'TXT_CLOSE' | translate }}</button>
+    <button mat-button [mat-dialog-close]="data.animal">{{'TEXT.CLOSE' | translate }}</button>
 
     <button mat-button class="btnSave" type="submit" (click)="save()">
-       {{'TXT_SAVE' | translate }}
+       {{'TEXT.SAVE' | translate }}
     </button>     
 </div>
 
