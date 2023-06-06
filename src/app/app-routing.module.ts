@@ -11,17 +11,11 @@ const routes: Routes = [
     {  path:'role/:contentTipi',   component:RoleComponent },
   
     {  path:'role',   component:RoleComponent },
-<<<<<<< HEAD
   
      {path:"user",loadChildren: () =>import('./Modules/user/user.module').then(m=>m.UserModule)},
-    
-=======
-  	{
-      path: 'permission',
-      loadChildren: () => import('./Modules/permission/permission.module').then(m => m.PermissionModule)
-    },
+     {path:"permission",loadChildren: () =>import('./Modules/permission/permission.module').then(m=>m.PermissionModule)},
 
->>>>>>> ed132cdea3920dd55396e5d0116641b1987c211c
+    
 
   ]},
   

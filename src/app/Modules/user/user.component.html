@@ -1,10 +1,22 @@
-<br>
-<button (click)="add()">Kullanıcı Ekle </button>
-<br>
-<br>
-<br>
+<div class="pageTitle">
 
-<button (click)="update()">Kullanıcı Update </button>
+    {{'TXT_LIBRARY'  }}
+  
+  </div>
+    <div class="row justify-content-end " style="position: relative;">
+      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
+        <button mat-button class="actionBtn"  (click)="add({ data: {}})">
+          <mat-icon>add</mat-icon> {{'TXT_ADD' | translate }}
+        </button>
+      </div>
+      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-icon matPrefix>search</mat-icon>
+          <mat-label>{{ "TXT_SEARCH" }}...</mat-label>
+          <input matInput  autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
 
 
 

@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
   }
   
   
-  add()
+  add(data:any)
   {
 
     var user:any = {};

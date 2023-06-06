@@ -10,22 +10,24 @@ import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.compo
 import { CoreModule } from '../core/core.module';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import {  PartialsModule } from '../Partials/partials.module';
 
 @NgModule({
   declarations: [MenuComponent, PrivateLayoutComponent, 
     PublicLayoutComponent,MenuHorizontalComponent,
-     LeftMenuComponent,TranslatePipe],
+     LeftMenuComponent,],
   imports: [
     CommonModule,   
    MaterialModule,
    RouterModule,HttpClientModule,
-   CoreModule
+   CoreModule,
+   PartialsModule
   ],
   exports: [
     MenuComponent,
     MaterialModule,
     MenuHorizontalComponent,
-    TranslatePipe
+    
 
   ],
   providers: [

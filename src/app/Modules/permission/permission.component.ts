@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PermissionService } from 'src/app/services/permission.service';
+import { AddComponent } from './add/add.component';
 
 @Component({
   selector: 'as-permission',
@@ -18,7 +20,9 @@ export class PermissionComponent implements OnInit {
    */
   constructor(
 
-     private permissionService:PermissionService
+     private permissionService:PermissionService,
+    private dialog: MatDialog
+
   ) {
         
   }
@@ -33,7 +37,7 @@ export class PermissionComponent implements OnInit {
   }
 
 
-  getlist()
+  getList()
   {
 
     this.permissionService.getList().subscribe(res=>{
@@ -48,11 +52,25 @@ export class PermissionComponent implements OnInit {
   
  
 
-  
+  addContact(data:any)
+  {
+
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
+
+    dialogRef.afterClosed().subscribe((refData: any) => {
+
+      this.getList();
+      if (!refData) {
+        //burada modal kapanıyor
+        return;
+      }
+    });
+
+  }
 
   agGridInit() {
 
-    this.getlist();
+    this.getList();
 
 
     this.columnDefs = [
