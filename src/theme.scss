@@ -1,42 +1,43 @@
 
 @use '@angular/material' as mat;
 
-@include mat.core();
+ @include mat.core();
 
-$my-custom-typography: mat.define-typography-config(
+$my-custom-level: mat.define-typography-level(
   $font-family: Roboto,
-  $font-weight: 400,
-  $font-size: 1rem,
-  $line-height: 1,
+  $font-weight: 900,
+  $font-size: 18px,
+  $line-height: 0.75,
   $letter-spacing: normal,
 );
 
-$my-custom-typography-config: mat.define-typography-config(
-  $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-  $headline-2: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
-  $headline-3: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-  $headline-4: mat.define-typography-level(34px, 40px, 400),
-  $button: mat.define-typography-level(24px, 32px, 400),
-  // ...
-);
 
-$my-primary: mat.define-palette(mat.$amber-palette,500);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-typography: mat.define-typography-config(
+    $font-family: 'Comic Sans',  
+    $headline-1: $my-custom-level,
+  );
+
+
+$my-primary: mat.define-palette(mat.$light-blue-palette,500);
+$my-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $my-warn: mat.define-palette(mat.$red-palette);
+$my-green:mat.define-palette(mat.$green-palette);
 
-$my-typography: mat.define-typography-config();
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $my-theme: mat.define-light-theme((
   color: (
     primary: $my-primary,
     accent: $my-accent,
-    warn: $my-warn,
-  ),
-  typography: $my-custom-level
+    warn: $my-warn  
+  ),  
+  typography: $my-typography,
+  // typography-level:$my-custom-level,
+   density: -1.5
 ));
+
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -45,5 +46,5 @@ $my-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

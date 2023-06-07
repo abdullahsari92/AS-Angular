@@ -14,14 +14,13 @@
   
   </div>
 
-<mat-card  class="content-card">
  
       <div class="content" fxLayout="row wrap">
         <form class="box-form" [formGroup]="languageForm">
        
             <div class="full-width"*ngFor="let item of ObjectContorls()"  >
 
-                 <mat-form-field appearance="outline"  class="full-width">
+                 <mat-form-field appearance="outline"  class="full-width headline-1">
                     <mat-label>{{item}}</mat-label>
                     <input matInput type="text" placeholder="{{item}}" formControlName="{{item}}"/>
                
@@ -31,25 +30,15 @@
         </form>
       </div>
   
-    <!-- <mat-card-actions style="text-align: center;">
-        <button type="button"  mat-raised-button [mat-dialog-close]="data.animal" cdkFocusInitial matTooltip="Cancel changes">
-            {{'CANCEL'}}
-        </button>&nbsp;
-      <button mat-button mat-raised-button type="submit" *ngIf="!isUpdate" (click)="add()" ><mat-icon>save</mat-icon> Kaydet</button>
-      <button mat-button mat-raised-button type="submit" *ngIf="isUpdate" (click)="update()" ><mat-icon>save</mat-icon> Kaydet</button>
-
-      <br>
-    </mat-card-actions> -->
-  </mat-card>
 
 
   <div class="rightCrudBtn">
     <div style="  margin-right:-30px;">
 
-        <button mat-button [mat-dialog-close]="data.animal">{{'TXT_CLOSE' | translate }}</button>
+        <button mat-button [mat-dialog-close]="data.animal">{{'TEXT_CLOSE' | translate }}</button>
 
         <button mat-button class="btnSave" type="submit" (click)="add()">
-          {{'TXT_SAVE' | translate }}
+          {{'TEXT_SAVE' | translate }}
         </button>     
     </div>
 </div>
