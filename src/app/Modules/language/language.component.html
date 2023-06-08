@@ -1,26 +1,29 @@
 <div class="pageTitle">
 
-    {{'TEXT.LANGUAGE'  }}
+    {{'TEXT.LANGUAGES' |translate }}
   
   </div>
     <div class="row justify-content-end " style="position: relative;">
       <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
-        <button mat-button class="actionBtn"  (click)="addContact({ data: {}})">
+        <button mat-button class="actionBtn"  (click)="add({ data: {}})">
           <mat-icon>add</mat-icon> {{'TEXT.ADD' | translate }}
-        </button>
-
-        <button mat-raised-button color="accent">Primary</button>
+        </button>    
       </div>
-      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative;">
+      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
+        <button mat-button class="actionBtn"  (click)="addAll()">
+          <mat-icon>add</mat-icon> {{'TEXT.ADD' | translate }}
+        </button>    
+      </div>
+      <!-- <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative;">
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-icon matPrefix>search</mat-icon>
           <mat-label>{{ "TEXT.SEARCH" }}...</mat-label>
           <input matInput  autocomplete="off">
         </mat-form-field>
-      </div>
+      </div> -->
     </div>
 
 
 
 
-<as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs"> </as-custom-ag-grid>
+<as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)"> </as-custom-ag-grid>

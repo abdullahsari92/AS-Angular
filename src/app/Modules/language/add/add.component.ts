@@ -37,22 +37,24 @@ export class AddComponent implements OnInit {
 
 		this.languageForm = this.fb.group({
      // uid: ["", Validators.compose([ Validators.required])],
-      keyword: ["TXT_", Validators.compose([ Validators.required])],
+      keyword: ["TEXT_", Validators.compose([ Validators.required])],
       // description: ["field name", Validators.compose([ Validators.required])],    
       tr: ["", Validators.compose([ Validators.required])],
       en: ["", Validators.compose([ Validators.required])],
       de: [""],
-      fr: [""]            
+      fr: [""] ,
+      es: [""],
+
 
 		});
   console.log('add satır - 38',this.data)
-    if(this.data.uid)
+    if(this.data.id)
     {
 
       this.data.type = parseInt(this.data.type);
 
       this.isUpdate=true;
-      this.languageForm.addControl("uid",new FormControl());
+      this.languageForm.addControl("id",new FormControl());
       const controls = this.languageForm.controls;
 
       Object.keys(controls).forEach(controlName =>{

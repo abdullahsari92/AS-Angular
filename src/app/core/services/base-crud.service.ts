@@ -13,56 +13,56 @@ export abstract class BaseCrudService {
   constructor(
     protected asSettingsService: AsSettingsService,
     protected httpClient: HttpClient,
-    @Inject(String) private endPoint: any
+    @Inject(String) private endpoint: any
   ) { }
 
   getList(data:any=null): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "getList", data);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "getList", data);
   }
 
   save(body: any): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "save", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "save", body);
   }
 
   getByUid(uid: string): Observable<apiResult> {
 
     var body = { uid: uid }
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "get_by_uid", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_uid", body);
   }
 
   getByUidBody(body: any): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "get_by_uid", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_uid", body);
   }
   delete(uid: string): Observable<apiResult> {
 
     var body = { uid: uid }
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "delete", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "delete", body);
   }
 
   add(data: any): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "add", data);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "add", data);
   }
   
   update(data: any): Observable<apiResult> {
   
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "update", data);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "update", data);
   }
   logo_upload(data: any): Observable<apiResult> {
   
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endPoint + "logo_upload", data);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "logo_upload", data);
   }
   
   
 
   filter(model: any): Observable<HttpResponse<apiResult>> {
     return this.httpClient.post<apiResult>(
-      this.asSettingsService.apiUrl + this.endPoint + 'Filter',
+      this.asSettingsService.apiUrl + this.endpoint + 'Filter',
       model,
       { observe: 'response' });
   }

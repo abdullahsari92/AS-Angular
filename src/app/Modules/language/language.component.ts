@@ -49,7 +49,7 @@ export class LanguageComponent {
   
  
 
-  addContact(data:any)
+  add(data:any)
   {
 
     const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'550px', height:'80%',maxHeight:"600px"});
@@ -71,19 +71,31 @@ export class LanguageComponent {
 
 
     this.columnDefs = [
-      { field: 'id', headerName: "id", sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
+      { field: 'id', headerName: "id",hide:true, sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
       { field: 'keyword', headerName: "keyword", minWidth: 130 },
       { field: 'tr', headerName: "Trükçe", minWidth: 130 },
       { field: 'en', headerName: "İngilizce", minWidth: 130 },    
       { field: 'de', headerName: "Almanca", minWidth: 130 },
-      { field: 'se', headerName: "Email", minWidth: 130 },    
-
-      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'agGridLang',},
+      { field: 'es', headerName: "İspanyolca", minWidth: 130 },
+      { field: 'fr', headerName: "Fransızca", minWidth: 130 },   
       {
-        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', cellEditorParams: {
-          values: [{ text: 'UPDATE', icon: 'created' },],
-        }
+        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', 
       },
     ];
+  }
+
+
+  diller:any;
+  addAll()
+  {
+
+
+    this.languagesService.getConfigAll().subscribe(res=>{
+   
+      this.languagesService.addAll(res).subscribe(res=>{
+
+      });
+    
+    })
   }
 }

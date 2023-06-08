@@ -12,7 +12,7 @@ export class TranslatePipe implements PipeTransform {
   
   private languagesSubject = new BehaviorSubject<any>([]);
 
-  translation:any;
+  translation:any[]=[];
   constructor(
 
     private translate:TranslateService,
@@ -35,6 +35,30 @@ export class TranslatePipe implements PipeTransform {
 
 
   transform(key: any): any {
+
+    
+    var lang =   this.localStorageService.getItem("language");
+     
+    this.translation =  this.localStorageService.getItem("languagesDefitions");
+
+    if(lang)
+    {
+     var findLang = this.translation.find(p =>p.keyword == key)
+      if(findLang)
+      {
+
+        return  findLang[lang];
+  
+      }
+      else
+      {
+         return key;
+      }
+  
+    }
+   }
+
+   transformEski(key: any): any {
 
     
     var lang =   this.localStorageService.getItem("language");
