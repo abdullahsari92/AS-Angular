@@ -13,6 +13,9 @@ import { MaterialModule } from '../theme/material/material.module';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 import { FileUploadAllComponent } from './file-upload-all/file-upload-all.component';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { PageComponent } from './Content/page/page.component';
+import { PageHeaderComponent } from './Content/page/page.header.component';
+import { PageBodyComponent } from './Content/page/page.body.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +24,10 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 		CustomAgGridComponent,
 		ImgUploadComponent,
 		FileUploadAllComponent,
-		TranslatePipe
+		TranslatePipe,
+		PageComponent,
+		PageHeaderComponent,
+		PageBodyComponent
 	],
 	exports: [
 		AgGridModule,
@@ -29,7 +35,10 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 		TranslatePipe,
 		ImgUploadComponent,
 		FileUploadAllComponent,
-		MaterialModule
+		MaterialModule,
+		PageComponent,
+		PageHeaderComponent,
+		PageBodyComponent
 		
 	],
 	imports: [

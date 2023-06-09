@@ -1,29 +1,26 @@
-<div class="pageTitle">
 
-    {{'TEXT.LANGUAGES' |translate }}
-  
-  </div>
-    <div class="row justify-content-end " style="position: relative;">
-      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
-        <button mat-button class="actionBtn"  (click)="add({ data: {}})">
-          <mat-icon>add</mat-icon> {{'TEXT.ADD' | translate }}
-        </button>    
-      </div>
-      <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative; ;">
+<as-page>
+
+
+  <as-page-header [title]="'TEXT.LANGUAGES'">
+
+    <ng-container asPageTools>
+			<button (click)="add({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
+        <mat-icon>add</mat-icon>
+        {{'TEXT.ADD' | translate }}</button>	
+
         <button mat-button class="actionBtn"  (click)="addAll()">
           <mat-icon>add</mat-icon> {{'TEXT.ADD' | translate }}
-        </button>    
-      </div>
-      <!-- <div class="col-3 col-xxl-3 col-lg-4 col-md-6 mobilFullwitdh" style="position: relative;">
-        <mat-form-field appearance="fill" style="width: 100%;">
-          <mat-icon matPrefix>search</mat-icon>
-          <mat-label>{{ "TEXT.SEARCH" }}...</mat-label>
-          <input matInput  autocomplete="off">
-        </mat-form-field>
-      </div> -->
-    </div>
+        </button>   
+		</ng-container>
+
+  </as-page-header>
 
 
+  <as-page-body>
 
+    <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)"> </as-custom-ag-grid>
 
-<as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)"> </as-custom-ag-grid>
+  </as-page-body>
+
+</as-page>

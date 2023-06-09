@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
 
 		this.languageForm = this.fb.group({
      // uid: ["", Validators.compose([ Validators.required])],
-      keyword: ["TEXT_", Validators.compose([ Validators.required])],
+      keyword: ["TEXT.", Validators.compose([ Validators.required])],
       // description: ["field name", Validators.compose([ Validators.required])],    
       tr: ["", Validators.compose([ Validators.required])],
       en: ["", Validators.compose([ Validators.required])],
@@ -74,6 +74,20 @@ export class AddComponent implements OnInit {
   }
 
 
+
+  save()
+  {
+
+    if(this.data.id)
+    {
+          this.update();
+    }
+    else
+    {
+      this.add();
+    } 
+
+  }
 
   add()
   {

@@ -71,8 +71,8 @@ export class LanguageComponent {
 
 
     this.columnDefs = [
-      { field: 'id', headerName: "id",hide:true, sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
-      { field: 'keyword', headerName: "keyword", minWidth: 130 },
+      { field: 'id', headerName: "id",hide:true, width: 70 },
+      { field: 'keyword', headerName: "keyword", minWidth: 130 , sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true,  },
       { field: 'tr', headerName: "Trükçe", minWidth: 130 },
       { field: 'en', headerName: "İngilizce", minWidth: 130 },    
       { field: 'de', headerName: "Almanca", minWidth: 130 },

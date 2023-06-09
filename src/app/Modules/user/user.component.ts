@@ -58,7 +58,7 @@ export class UserComponent implements OnInit {
     user.Email="sar@gmail.com";
 
     this.user = user;
-
+return;
     this.userService.add(user).subscribe(res=>{
 
       if(res.success)
@@ -113,9 +113,7 @@ export class UserComponent implements OnInit {
       { field: 'email', headerName: "Email", minWidth: 130 },    
       { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'agGridLang',},
       {
-        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', cellEditorParams: {
-          values: [{ text: 'UPDATE', icon: 'created' },],
-        }
+        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent'
       },
     ];
   }

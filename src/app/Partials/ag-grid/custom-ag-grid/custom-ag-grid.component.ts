@@ -112,6 +112,8 @@ export class CustomAgGridComponent implements OnInit {
   }
   onSelectionChanged($event:any) {
     var selectedRows = this.agGrid.api.getSelectedRows();
+
+    this.selectedData = selectedRows;
     if (this.localStorageService.getItem("agGridEdit")) {
       this.editData.emit(selectedRows[0]);
       this.localStorageService.removeItem("agGridEdit");
