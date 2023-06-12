@@ -44,9 +44,8 @@ export class AddComponent implements OnInit {
       de: [""],
       fr: [""] ,
       es: [""],
-
-
 		});
+    
   console.log('add satır - 38',this.data)
     if(this.data.id)
     {

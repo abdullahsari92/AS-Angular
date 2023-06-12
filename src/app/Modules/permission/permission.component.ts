@@ -50,9 +50,10 @@ export class PermissionComponent implements OnInit {
     })
   }
   
- 
 
-  addContact(data:any)
+
+
+  add(data:any)
   {
 
     const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
@@ -75,10 +76,11 @@ export class PermissionComponent implements OnInit {
 
     this.columnDefs = [
       { field: 'id', headerName: "id", sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
-      { field: 'firstName', headerName: "adi", minWidth: 130 },
-      { field: 'lastName', headerName: "soyadi", minWidth: 130 },
-      { field: 'email', headerName: "Email", minWidth: 130 },    
-      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'agGridLang',},
+      { field: 'name', headerName: "adi", minWidth: 130 },
+      { field: 'actionName', headerName: "actionName", minWidth: 130 },
+      { field: 'controllerName', headerName: "controllerName", minWidth: 130 },
+      { field: 'description', headerName: "description", minWidth: 130 },    
+      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'changeStatus',},
       {
         field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', cellEditorParams: {
           values: [{ text: 'UPDATE', icon: 'created' },],

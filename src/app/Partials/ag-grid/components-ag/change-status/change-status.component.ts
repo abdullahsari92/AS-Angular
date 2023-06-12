@@ -67,11 +67,13 @@ export class ChangeStatusComponent implements AgRendererComponent {
         return 'danger';
 
     }
+
+    console.log(' status',status)
     if (status == -1)
       return 'warning';
-    if (status == 0)
+    if (status == 0 || status==false)
       return 'danger';
-    if (status == 1)
+    if (status == 1 || status==true)
       return 'success';
     if (status == 2)
       return 'metal';

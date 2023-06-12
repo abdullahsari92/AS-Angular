@@ -43,16 +43,15 @@ export class TranslatePipe implements PipeTransform {
 
     if(lang)
     {
-     var findLang = this.translation.find(p =>p.keyword == key)
+     var findLang = this.translation.find(p =>p.keyword.toUpperCase() == key.toUpperCase())
       if(findLang)
-      {
-
+      { 
         return  findLang[lang];
   
       }
       else
       {
-         return key;
+         return key.split(".")[1];
       }
   
     }

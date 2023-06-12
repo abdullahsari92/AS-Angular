@@ -44,11 +44,13 @@ export class AddComponent {
   }
 
 
+
+
   initPermissionForm() {
   
     this.permissionForm = this.fb.group({
       name: ["", Validators.compose([Validators.required])],
-      description: ["", Validators.compose([Validators.required,Validators.email])],
+      description: ["", Validators.compose([Validators.required])],
       ActionName: [""],
       ControllerName: ["", Validators.compose([Validators.required])],
    
@@ -78,8 +80,7 @@ export class AddComponent {
   ObjectContorls() {
     const controls = this.permissionForm.controls;
 
-    var deger = Object.keys(controls).filter(m => m != "email_type_uid")
-      .filter(m => m != "email_type_uid")
+    var deger = Object.keys(controls).filter(m => m != "email_type_uid");
     return deger;
   }
 

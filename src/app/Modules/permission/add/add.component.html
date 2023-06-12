@@ -4,7 +4,7 @@
     <div class="header" style="padding-bottom: 10px;"> 
     
       <div style="  margin: 0 -20px;">
-        <span >{{'TEXT.ADD_PERMISSION' | translate}} </span>
+        <span >{{'TEXT.ADD' | translate}} </span>
        
         <span [mat-dialog-close]="data.animal" style=" position: absolute;  top: 10px;right: -20px;">
           <mat-icon> close</mat-icon>
@@ -14,7 +14,7 @@
             <div class="manuelAdd" *ngIf="!this.data.user2">       
                     <div class="" style="padding: 2%;">                
                         <form class="form text-center "  action="" [formGroup]="permissionForm">
-                    
+<!--                     
                             <br>
                             <mat-form-field appearance="outline" class="full-width">
                                 <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
@@ -23,28 +23,15 @@
                                     <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>           
-                            
-                            <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
-                                <input matInput autocomplete="off" formControlName="name">
-                                <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
-                                </mat-error> 
-                            </mat-form-field>     
-                            <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
-                                <input matInput autocomplete="off" formControlName="name">
-                                <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
-                                </mat-error> 
-                            </mat-form-field>     
-                            <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
-                                <input matInput autocomplete="off" formControlName="name">
-                                <mat-error *ngIf="asSettingsService.isControlHasError('name','required',permissionForm)">
-                                    <strong>{{ 'TEXT.Required' | translate }}</strong>
-                                </mat-error> 
-                            </mat-form-field>     
+                             -->
+                            <div class="full-width"*ngFor="let item of ObjectContorls()"  >
+
+                                <mat-form-field appearance="outline"  class="full-width headline-1">
+                                   <mat-label>{{ 'TEXT.'+item | translate}}</mat-label>
+                                   <input matInput type="text" placeholder="{{item}}" formControlName="{{item}}"/>
+                              
+                               </mat-form-field>
+                           </div>      
                            
                         </form>
                     </div>     
