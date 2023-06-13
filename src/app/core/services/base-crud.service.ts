@@ -18,7 +18,7 @@ export abstract class BaseCrudService {
 
   getList(data:any=null): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "getList", data);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "list", data);
   }
 
   save(body: any): Observable<apiResult> {
@@ -26,16 +26,16 @@ export abstract class BaseCrudService {
     return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "save", body);
   }
 
-  getByUid(uid: string): Observable<apiResult> {
+  getByUid(id: string): Observable<apiResult> {
 
-    var body = { uid: uid }
+    var body = { id: id }
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_uid", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_id", body);
   }
 
   getByUidBody(body: any): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_uid", body);
+    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_id", body);
   }
   delete(uid: string): Observable<apiResult> {
 

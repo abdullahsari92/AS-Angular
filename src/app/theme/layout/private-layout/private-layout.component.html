@@ -227,7 +227,7 @@
   
     <!-- <app-menu (openSettingMenu)="getSettingMenu()" (close)="appPadding = $event"></app-menu> -->
   
-            <as-left-menu></as-left-menu>
+            <as-left-menu (close)="appPadding = $event"></as-left-menu>
 
     <!-- <kt-menu-horizontal></kt-menu-horizontal> -->
     <div [style.padding-left]="appPadding && appPadding">

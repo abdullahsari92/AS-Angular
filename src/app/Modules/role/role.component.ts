@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 
@@ -14,7 +15,7 @@ export class RoleComponent implements OnInit {
   user:any;
   constructor(
     private activatedRoute:ActivatedRoute,
-
+    private dialog:MatDialog,
     private roleService:RoleService
   ) {   
 
@@ -61,4 +62,21 @@ this.rowData = src.data.list;
       },
     ];
   }
+
+  add(data:any)
+  {
+
+    //const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
+
+    // dialogRef.afterClosed().subscribe((refData: any) => {
+
+    //   this.getList();
+    //   if (!refData) {
+    //     //burada modal kapanıyor
+    //     return;
+    //   }
+    //});
+
+  }
+
 }
