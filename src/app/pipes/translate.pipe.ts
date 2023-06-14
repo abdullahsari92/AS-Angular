@@ -41,7 +41,7 @@ export class TranslatePipe implements PipeTransform {
      
     this.translation =  this.localStorageService.getItem("languagesDefitions");
 
-    if(lang)
+    if(lang || this.translation)
     {
      var findLang = this.translation.find(p =>p.keyword.toUpperCase() == key.toUpperCase())
       if(findLang)

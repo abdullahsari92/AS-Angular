@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
+import { AddComponent } from './add/add.component';
 
 @Component({
   selector: 'as-role',
@@ -35,9 +36,10 @@ this.agGridInit();
   getlist()
   {
 
-    this.roleService.getList().subscribe(src=>{
+    this.roleService.getList().subscribe(res=>{
 
-this.rowData = src.data.list;
+      if(res.success)
+      this.rowData = res.data.items;
 
 
     })
@@ -52,7 +54,7 @@ this.rowData = src.data.list;
     this.columnDefs = [
       { field: 'id', headerName: "id", sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
       { field: 'name', headerName: "adi", minWidth: 130 },
-      { field: 'destciption', headerName: "soyadi", minWidth: 130 },
+      { field: 'description', headerName: "desciption", minWidth: 130 },
       { field: 'level', headerName: "Email", minWidth: 130 },    
       { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'agGridLang',},
       {
@@ -66,16 +68,16 @@ this.rowData = src.data.list;
   add(data:any)
   {
 
-    //const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
 
-    // dialogRef.afterClosed().subscribe((refData: any) => {
+    dialogRef.afterClosed().subscribe((refData: any) => {
 
-    //   this.getList();
-    //   if (!refData) {
-    //     //burada modal kapanıyor
-    //     return;
-    //   }
-    //});
+      this.getlist();
+      if (!refData) {
+        //burada modal kapanıyor
+        return;
+      }
+    });
 
   }
 

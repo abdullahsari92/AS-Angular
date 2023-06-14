@@ -19,6 +19,9 @@ const routes: Routes = [
      {path:"language",loadChildren: () =>import('./Modules/language/language.module').then(m=>m.LanguageModule)},
      {path:"menu",loadChildren: () =>import('./Modules/menu/menu.module').then(m=>m.MenuModule)},
 
+     {path:"role",loadChildren: () =>import('./Modules/role/role.module').then(m=>m.RoleModule)},
+
+
 
     
 
