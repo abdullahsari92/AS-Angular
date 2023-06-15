@@ -37,11 +37,11 @@ export abstract class BaseCrudService {
 
     return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_id", body);
   }
-  delete(uid: string): Observable<apiResult> {
+  delete(id: string):any{
 
-    var body = { uid: uid }
+    var body = { Id: id }
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "delete", body);
+    return this.httpClient.delete<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "delete/"+ id);
   }
 
   add(data: any): Observable<apiResult> {

@@ -54,23 +54,23 @@ export class TranslateService implements OnInit {
 
   getValue(key:string)
   {
-    this.langType = this.localStorageService.getItem("langType");
-
+    var lang =   this.localStorageService.getItem("language");
+     
     this.translation =  this.localStorageService.getItem("languagesDefitions");
-  
 
-    if(this.langType )
+    if(lang || this.translation)
     {
-      if(this.translation[key])
-      {
-        return  this.translation[key][this.langType];
-
+     var findLang = this.translation.find((p:any) =>p.keyword.toUpperCase() == key.toUpperCase())
+      if(findLang)
+      { 
+        return  findLang[lang];
+  
       }
       else
       {
-         return key;
+         return key.split(".")[1]; // sadec TEXT. yanındaki değer gönderiliyor.
       }
-
+  
     }
      
   

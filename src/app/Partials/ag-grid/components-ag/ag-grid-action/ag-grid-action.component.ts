@@ -5,6 +5,8 @@ import { Location } from "@angular/common";
 import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { GridActionEnum } from 'src/app/Model/Enums/grid-action.enum';
+import Swal from 'sweetalert2';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: 'kt-ag-grid-action',
@@ -21,7 +23,7 @@ export class AgGridActionComponent implements AgRendererComponent {
                               {action:GridActionEnum.delete.toString(),text:"Delete",icon:"delete"} ];
 
   constructor(private router:Router,location: Location,
-    
+    private translate:TranslateService,
     private localStorageService:LocalStorageService, private activatedRoute:ActivatedRoute) { }
 
   
@@ -116,18 +118,54 @@ export class AgGridActionComponent implements AgRendererComponent {
 
     if(item.action == GridActionEnum.delete.toString())
     {     
+
+      if(!this.localStorageService.getItem("agGridRemove"))
+      {
+        this.localStorageService.setItem("agGridRemove",this.data);
+        if(this.params)
+
+        this.params.api.forEachNode( (node:any) => {
+          if ( node.data === this.data ) {  
+             node.setSelected(true);
+      console.log(' node',node)
+
+            }
+          });
+    
+      }
+
+      return;
+      Swal.fire({
+        title: this.translate.getValue("TEXT.ARE_YOU_SURE"),
+        text: this.translate.getValue("TEXT.SILME_ACIKLAMA"),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: this.translate.getValue("TEXT.CANCEL"),  
+        confirmButtonText:this.translate.getValue("TEXT.YES_DELETE")
+      }).then((s:any) => {
+
+        console.log(' isConfirmed',s.isConfirmed)
+        if (s.isConfirmed) {
+  
           if(!this.localStorageService.getItem("agGridRemove"))
           {
             this.localStorageService.setItem("agGridRemove",this.data);
             if(this.params)
+
             this.params.api.forEachNode( (node:any) => {
               if ( node.data === this.data ) {  
                  node.setSelected(true);
+          console.log(' node',node)
+
                 }
               });
         
           }
-
+        
+        }
+      })      
 
     }
     if(item.action == GridActionEnum.reminder.toString())

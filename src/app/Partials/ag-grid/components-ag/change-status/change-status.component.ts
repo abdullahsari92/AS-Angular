@@ -65,10 +65,7 @@ export class ChangeStatusComponent implements AgRendererComponent {
         return 'level-second-success';
       if (status == OgrenciBasvuruDurumEnum.red)
         return 'danger';
-
     }
-
-    console.log(' status',status)
     if (status == -1)
       return 'warning';
     if (status == 0 || status==false)

@@ -113,6 +113,8 @@ export class CustomAgGridComponent implements OnInit {
   onSelectionChanged($event:any) {
     var selectedRows = this.agGrid.api.getSelectedRows();
 
+
+    console.log(' selectedRows',selectedRows)
     this.selectedData = selectedRows;
     if (this.localStorageService.getItem("agGridEdit")) {
       this.editData.emit(selectedRows[0]);
@@ -122,6 +124,7 @@ export class CustomAgGridComponent implements OnInit {
     if (this.localStorageService.getItem("agGridRemove")) {
       this.removeData.emit(selectedRows[0]);
       this.localStorageService.removeItem("agGridRemove");
+      console.log(' agGridRemove',selectedRows)
 
     }
 

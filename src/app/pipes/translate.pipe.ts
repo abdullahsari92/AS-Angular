@@ -51,7 +51,7 @@ export class TranslatePipe implements PipeTransform {
       }
       else
       {
-         return key.split(".")[1];
+         return key.split(".")[1]; // sadec TEXT. yanındaki değer gönderiliyor.
       }
   
     }

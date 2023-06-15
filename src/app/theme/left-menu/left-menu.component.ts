@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, OnChanges, OnInit, Output, Simpl
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MenuSubjectService } from 'src/app/services/subject/menu-subject.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: 'as-left-menu',
@@ -25,16 +26,16 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
       icon: 'home', root:true, name: 'Ana Sayfa',url:'admin/',noChild:true
     },
     {
-      icon: 'person', root:true, name: 'Kullanıcılar',url:'/admin/user',  noChild:true
+      icon: 'person', root:true, name: this.translate.getValue("TEXT.USERS"),url:'/admin/user',  noChild:true
     },   
     {
-      icon: 'tune', root:true, name: 'Yetkiler',url:'/admin/permission',noChild:true
+      icon: 'tune', root:true, name: this.translate.getValue("TEXT.PERMISSION"),url:'/admin/permission',noChild:true
     },
     {
-      icon: 'menu', root:true, name: 'Menu',url:'/admin/menu',noChild:true
+      icon: 'menu', root:true, name: this.translate.getValue("TEXT.MENU"),url:'/admin/menu',noChild:true
     },
     {
-      icon: 'language', root:true, name: 'Diller',url:'/admin/language',noChild:true
+      icon: 'language', root:true, name: this.translate.getValue("TEXT.LANGUAGES"),url:'/admin/language',noChild:true
     },
     {
       icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [
@@ -87,8 +88,8 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
   constructor(
     private localStorageService: LocalStorageService,
     private router:Router,
-    private menuSubjectService:MenuSubjectService
-
+    private menuSubjectService:MenuSubjectService,
+    private translate:TranslateService
     ) {
 
 

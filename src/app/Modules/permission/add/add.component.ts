@@ -51,8 +51,8 @@ export class AddComponent {
     this.permissionForm = this.fb.group({
       name: ["", Validators.compose([Validators.required])],
       description: ["", Validators.compose([Validators.required])],
-      ActionName: [""],
-      ControllerName: ["", Validators.compose([Validators.required])],
+      actionName: [""],
+      controllerName: ["", Validators.compose([Validators.required])],
    
 
     });
@@ -61,7 +61,7 @@ export class AddComponent {
     if (this.data.id) {
 
       console.log('gelenData', this.data)
-      this.permissionForm.addControl("ma_user_uid", new FormControl());
+      this.permissionForm.addControl("id", new FormControl());
 
       const controls = this.permissionForm.controls;
 

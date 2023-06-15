@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PermissionService } from 'src/app/services/permission.service';
 import { AddComponent } from './add/add.component';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'as-permission',
@@ -80,14 +81,25 @@ export class PermissionComponent implements OnInit {
       { field: 'actionName', headerName: "actionName", minWidth: 130 },
       { field: 'controllerName', headerName: "controllerName", minWidth: 130 },
       { field: 'description', headerName: "description", minWidth: 130 },    
-      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'changeStatus',},
-      {
-        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', cellEditorParams: {
-          values: [{ text: 'UPDATE', icon: 'created' },],
-        }
-      },
+      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'changeStatus'},
+      {field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent'}
+      
     ];
   }
 
 
+
+  deleteItem(data:any)
+  {
+console.log(' deleteItem',data)
+
+        this.permissionService.delete(data.id).pipe(tap(res=>{
+
+
+
+        }),finalize(()=>{
+          
+        })).subscribe();
+
+  }
 }

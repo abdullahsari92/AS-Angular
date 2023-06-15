@@ -196,7 +196,7 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
 
 
   setLanguage(item: LanguageFlag) {
-    this.localStorageService.setItem("langType", item.lang);
+    this.localStorageService.setItem("language", item.lang);
     this.translate.use(item.lang);
     this.activeLanguage = item;
 
