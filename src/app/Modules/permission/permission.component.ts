@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PermissionService } from 'src/app/services/permission.service';
 import { AddComponent } from './add/add.component';
 import { finalize, tap } from 'rxjs';
+import { apiResult } from 'src/app/core/models/apiResult';
+import Swal from 'sweetalert2';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: 'as-permission',
@@ -22,7 +25,9 @@ export class PermissionComponent implements OnInit {
   constructor(
 
      private permissionService:PermissionService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate: TranslateService,
+
 
   ) {
         
@@ -57,7 +62,7 @@ export class PermissionComponent implements OnInit {
   add(data:any)
   {
 
-    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'70%',maxHeight:"500px"});
 
     dialogRef.afterClosed().subscribe((refData: any) => {
 
@@ -77,11 +82,11 @@ export class PermissionComponent implements OnInit {
 
     this.columnDefs = [
       { field: 'id', headerName: "id", sortable: true, filter: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, checkboxSelection: true, width: 70 },
-      { field: 'name', headerName: "adi", minWidth: 130 },
-      { field: 'actionName', headerName: "actionName", minWidth: 130 },
-      { field: 'controllerName', headerName: "controllerName", minWidth: 130 },
-      { field: 'description', headerName: "description", minWidth: 130 },    
-      { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'changeStatus'},
+      { field: 'name', headerName: this.translate.getValue("TEXT.Name"), minWidth: 130 },
+      { field: 'controllerName', headerName: this.translate.getValue("TEXT.controllerName"), minWidth: 130 },
+      { field: 'actionName', headerName: this.translate.getValue("TEXT.actionName"), minWidth: 130 },
+      { field: 'description', headerName: this.translate.getValue("TEXT.description"), minWidth: 130 },    
+      { field: 'isApproved' ,   headerName:this.translate.getValue("TEXT.isApproved"),  minWidth: 150 ,cellRenderer:'changeStatus'},
       {field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent'}
       
     ];
@@ -91,15 +96,26 @@ export class PermissionComponent implements OnInit {
 
   deleteItem(data:any)
   {
-console.log(' deleteItem',data)
 
-        this.permissionService.delete(data.id).pipe(tap(res=>{
+        this.permissionService.delete(data.id).pipe(tap((res:apiResult)=>{
+          if(res.success)
+          {
 
+              this.getList();
+              Swal.fire({
+                title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              })
 
+          }
 
         }),finalize(()=>{
+
           
         })).subscribe();
+
 
   }
 }

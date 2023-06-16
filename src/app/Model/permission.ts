@@ -4,4 +4,5 @@ export interface Permission {
     description: string;
     controllerName: string;
     actionName: string;
+    checked:boolean;
 }

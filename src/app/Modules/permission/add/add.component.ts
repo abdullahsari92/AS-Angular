@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { PrivateLayoutComponent } from 'src/app/theme/layout/private-layout/private-layout.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'as-add',
@@ -90,13 +91,13 @@ export class AddComponent {
 
 
   save() {
-    if (this.data.user2) {
+    if (this.data.id) {
 
-      this.edituserProfile();
+      this.update();
     }
 
     else {
-      this.manualContactAdd();
+      this.Add();
 
     }
 
@@ -104,7 +105,7 @@ export class AddComponent {
 
   }
 
-  manualContactAdd() {
+  Add() {
 		const controls = this.permissionForm.controls;
 
     if (this.permissionForm.invalid) {
@@ -123,19 +124,19 @@ export class AddComponent {
         this.dialogRef.close({
           data: res.data
         });
-        // Swal.fire({
-        //   title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
-        //   icon: 'success',
-        //   showConfirmButton: false,
-        //   timer: 2500
-        // })
+        Swal.fire({
+          title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2500
+        })
       }
       else {      
-        // Swal.fire({
-        //   icon: 'error',
-        //   html:this.translate.getValue(res.error.code) + "<br>" + this.asSettingsService.hataObjectGoster(res.error),
-        //   showConfirmButton: true,
-        // })
+        Swal.fire({
+          icon: 'error',
+          html:res.message,
+          showConfirmButton: true,
+        })
 
       }
 
@@ -169,17 +170,23 @@ export class AddComponent {
   })
 
 
-  edituserProfile() {
+  update() {
 
-    this.permissionForm.get("ma_user_uid")?.setValue(this.data.user2);
-
+  
     this.permissionService.update(this.permissionForm.value).subscribe(res => {
 
       console.log('edituserProfile',res)
-
+      this.dialogRef.close({
+        data: res.data
+      });
       if (res.success) {
 
-      
+        Swal.fire({
+          title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2500
+        })
 
 
       }

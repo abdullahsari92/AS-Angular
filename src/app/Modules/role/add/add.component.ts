@@ -7,6 +7,8 @@ import { Permission } from 'src/app/Model/permission';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
+import { PermissionService } from 'src/app/services/permission.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'as-add',
@@ -15,7 +17,7 @@ import { TranslateService } from 'src/app/services/translate.service';
 })
 export class AddComponent {
 
-  permission:Permission | undefined;
+  permissionList:Permission[]=[];
   lang: any
   roleForm!: FormGroup;
   currentCode: string = "";
@@ -28,7 +30,9 @@ export class AddComponent {
     public dialogRef: MatDialogRef<RoleComponent>,
     private translate: TranslateService,
     private roleService:RoleService, 
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private permissionService:PermissionService,
+
 
 
   ) {
@@ -41,10 +45,30 @@ export class AddComponent {
     this.initroleForm();
     this.statusLanguages = this.asSettingsService.statusLanguages;
 
+
+    this.getPermissionList();
   }
 
 
 
+  getPermissionList()
+  {
+
+    this.roleService.getById(this.data.id).pipe(tap(res=>{
+      this.permissionList = res.data.items;
+
+      console.log('getList ',res)
+      
+    })).subscribe();
+  }
+   
+  setAll(completed: boolean,permission:Permission) {
+    //this.allComplete = completed;
+    // if (this.permission.subtasks == null) {
+    //   return;
+    // }
+    this.permissionList.filter(p=>p.controllerName==permission.controllerName).forEach(t => (t.checked = completed));
+  }
 
   initroleForm() {
   

@@ -58,9 +58,7 @@ this.agGridInit();
       { field: 'level', headerName: "Email", minWidth: 130 },    
       { field: 'isApproved' ,   headerName:"adı",  minWidth: 150 ,cellRenderer:'agGridLang',},
       {
-        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent', cellEditorParams: {
-          values: [{ text: 'UPDATE', icon: 'created' },],
-        }
+        field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent'
       },
     ];
   }

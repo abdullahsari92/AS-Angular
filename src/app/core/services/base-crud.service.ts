@@ -26,20 +26,12 @@ export abstract class BaseCrudService {
     return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "save", body);
   }
 
-  getByUid(id: string): Observable<apiResult> {
-
-    var body = { id: id }
-
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_id", body);
+  getById(id: string): Observable<apiResult> {
+  
+    return this.httpClient.get<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "getById/" + id);
   }
 
-  getByUidBody(body: any): Observable<apiResult> {
-
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "get_by_id", body);
-  }
-  delete(id: string):any{
-
-    var body = { Id: id }
+  delete(id: string):Observable<apiResult>{
 
     return this.httpClient.delete<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "delete/"+ id);
   }
