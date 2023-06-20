@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoleComponent } from '../role.component';
 import { RoleService } from 'src/app/services/role.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Permission } from 'src/app/Model/permission';
+import { Permission } from 'src/app/Model/Entity/permission';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
