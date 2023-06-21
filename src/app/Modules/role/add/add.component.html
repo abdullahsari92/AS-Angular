@@ -34,19 +34,24 @@
                            </div>      
 
                            
-                           <section class="example-section">
-                            <span class="example-list-section" *ngFor="let permission of permissionList">
+                           <div class="example-section" *ngFor="let item of permissionModel"> 
+                            <div class="example-list-section" style="text-align: left;" >
                               <mat-checkbox class="example-margin"
-                                            [checked]="permission.checked"
+                                            [checked]="item.checked"
                                             color="primary"
                                             [indeterminate]="false"
-                                            (change)="setAll($event.checked, permission)">
-                                {{permission.controllerName}}
-                              </mat-checkbox>
-                            </span>
+                                            (change)="setAll($event.checked)">
+                              <b> {{item.key}}  </b>   
+                              </mat-checkbox>                        
+                            </div>
+                            <br>
                             <span class="example-list-section">
-                              <ul>
-                                <!-- <li *ngFor="let subtask of task.subtasks">
+
+
+                              <mat-checkbox class="example-margin" *ngFor="let permission of item.value" >{{permission.actionName}} </mat-checkbox>
+                              <ul>                 
+
+                                <!-- <li *ngFor="let subtask of item.value">
                                   <mat-checkbox [(ngModel)]="subtask.completed"
                                                 [color]="subtask.color"
                                                 (ngModelChange)="updateAllComplete()">
@@ -55,7 +60,7 @@
                                 </li> -->
                               </ul>
                             </span>
-                          </section>
+                          </div>
                            
                         </form>
                     </div>     

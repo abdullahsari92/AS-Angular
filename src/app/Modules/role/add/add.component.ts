@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { tap } from 'rxjs';
+import { PermissionModel } from 'src/app/Model/permission.model';
 
 @Component({
   selector: 'as-add',
@@ -17,7 +18,7 @@ import { tap } from 'rxjs';
 })
 export class AddComponent {
 
-  permissionList:Permission[]=[];
+  permissionModel:PermissionModel[]=[];
   lang: any
   roleForm!: FormGroup;
   currentCode: string = "";
@@ -55,19 +56,19 @@ export class AddComponent {
   {
 
     this.roleService.getById(this.data.id).pipe(tap(res=>{
-      this.permissionList = res.data.items;
+      this.permissionModel = res.data.items;
 
       console.log('getList ',res)
       
     })).subscribe();
   }
    
-  setAll(completed: boolean,permission:Permission) {
+  setAll(completed: boolean) {
     //this.allComplete = completed;
     // if (this.permission.subtasks == null) {
     //   return;
     // }
-    this.permissionList.filter(p=>p.controllerName==permission.controllerName).forEach(t => (t.checked = completed));
+    //this.permissionModel.filter(p=>p.controllerName==permission.controllerName).forEach(t => (t.checked = completed));
   }
 
   initroleForm() {

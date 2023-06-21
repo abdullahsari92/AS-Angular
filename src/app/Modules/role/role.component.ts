@@ -66,7 +66,7 @@ this.agGridInit();
   add(data:any)
   {
 
-    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'80%',maxHeight:"600px"});
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'650px', height:'80%',maxHeight:"600px"});
 
     dialogRef.afterClosed().subscribe((refData: any) => {
 
