@@ -12,10 +12,11 @@ import { FileViewerComponent } from './ag-grid/components-ag/file-viewer/file-vi
 import { MaterialModule } from '../theme/material/material.module';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 import { FileUploadAllComponent } from './file-upload-all/file-upload-all.component';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TranslatePipe } from '../core/pipes/translate.pipe';
 import { PageComponent } from './Content/page/page.component';
 import { PageHeaderComponent } from './Content/page/page.header.component';
 import { PageBodyComponent } from './Content/page/page.body.component';
+import { ToTextCamelCasePipe } from '../core/pipes/toTextCamelCase.pipe';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { PageBodyComponent } from './Content/page/page.body.component';
 		ImgUploadComponent,
 		FileUploadAllComponent,
 		TranslatePipe,
+		ToTextCamelCasePipe,
 		PageComponent,
 		PageHeaderComponent,
 		PageBodyComponent
@@ -33,6 +35,7 @@ import { PageBodyComponent } from './Content/page/page.body.component';
 		AgGridModule,
 		CustomAgGridComponent,	
 		TranslatePipe,
+		ToTextCamelCasePipe,
 		ImgUploadComponent,
 		FileUploadAllComponent,
 		MaterialModule,

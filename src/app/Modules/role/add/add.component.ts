@@ -63,12 +63,16 @@ export class AddComponent {
     })).subscribe();
   }
    
-  setAll(completed: boolean) {
-    //this.allComplete = completed;
-    // if (this.permission.subtasks == null) {
-    //   return;
-    // }
-    //this.permissionModel.filter(p=>p.controllerName==permission.controllerName).forEach(t => (t.checked = completed));
+  setAll(completed: boolean,key:string) {
+  
+
+    console.log(' completed',completed)
+console.log(' filter', this.permissionModel.filter(p=>p.key==key).map(p=>(p.value)))
+    this.permissionModel.filter(p=>p.key==key).map(p=>p.value)[0].forEach(t => (
+      t.checked = completed));
+
+console.log(' filter2', this.permissionModel.filter(p=>p.key==key))
+
   }
 
   initroleForm() {
@@ -111,6 +115,11 @@ export class AddComponent {
 
 
 
+  getCamelCase(text:string)
+  {
+     return text[0].toUpperCase() + text.substring(1);
+
+  }
 
 
 

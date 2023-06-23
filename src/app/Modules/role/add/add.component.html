@@ -13,7 +13,7 @@
     </div>
             <div class="manuelAdd" *ngIf="!this.data.user2">       
                     <div class="" style="padding: 2%;">                
-                        <form class="form text-center "  action="" [formGroup]="roleForm">
+                        <form class="form"  action="" [formGroup]="roleForm">
 <!--                     
                             <br>
                             <mat-form-field appearance="outline" class="full-width">
@@ -24,7 +24,8 @@
                                 </mat-error> 
                             </mat-form-field>           
                              -->
-                            <div class="full-width"*ngFor="let item of ObjectContorls()"  >
+                             <div class="row">
+                            <div class="col-lg-6"*ngFor="let item of ObjectContorls()"  >
 
                                 <mat-form-field appearance="outline"  class="full-width headline-1">
                                    <mat-label>{{ 'TEXT.'+item | translate}}</mat-label>
@@ -32,24 +33,31 @@
                               
                                </mat-form-field>
                            </div>      
+</div>
 
-                           
+                           <h6><b> {{'TEXT.PERMISSION' | translate }} </b></h6>
+                           <div style="background-color:#f7f8fa; padding: 10px;">
+
+                       
                            <div class="example-section" *ngFor="let item of permissionModel"> 
                             <div class="example-list-section" style="text-align: left;" >
                               <mat-checkbox class="example-margin"
                                             [checked]="item.checked"
                                             color="primary"
                                             [indeterminate]="false"
-                                            (change)="setAll($event.checked)">
-                              <b> {{item.key}}  </b>   
+                                            (change)="setAll($event.checked,item.key)">
+                            {{item.key}}
                               </mat-checkbox>                        
                             </div>
+
+                            <mat-divider></mat-divider>
+
                             <br>
-                            <span class="example-list-section">
+                            <span class="example-list-section" style="text-align: left;margin-left: 30px;">
 
 
-                              <mat-checkbox class="example-margin" *ngFor="let permission of item.value" >{{permission.actionName}} </mat-checkbox>
-                              <ul>                 
+                              <mat-checkbox class="example-margin" *ngFor="let permission of item.value"   [checked]="permission.checked" >{{permission.actionName | toTextCamelCase }} </mat-checkbox>
+                                          
 
                                 <!-- <li *ngFor="let subtask of item.value">
                                   <mat-checkbox [(ngModel)]="subtask.completed"
@@ -58,10 +66,12 @@
                                     {{subtask.name}}p
                                   </mat-checkbox>
                                 </li> -->
-                              </ul>
+                          
                             </span>
+                            <mat-divider></mat-divider>
+
                           </div>
-                           
+                        </div>
                         </form>
                     </div>     
 
