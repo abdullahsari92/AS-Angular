@@ -3,12 +3,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoleComponent } from '../role.component';
 import { RoleService } from 'src/app/services/role.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Permission } from 'src/app/Model/permission';
+import { Permission } from 'src/app/Model/Entity/permission';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { tap } from 'rxjs';
+import { PermissionModel } from 'src/app/Model/permission.model';
 
 @Component({
   selector: 'as-add',
@@ -17,7 +18,7 @@ import { tap } from 'rxjs';
 })
 export class AddComponent {
 
-  permissionList:Permission[]=[];
+  permissionModel:PermissionModel[]=[];
   lang: any
   roleForm!: FormGroup;
   currentCode: string = "";
@@ -55,19 +56,23 @@ export class AddComponent {
   {
 
     this.roleService.getById(this.data.id).pipe(tap(res=>{
-      this.permissionList = res.data.items;
+      this.permissionModel = res.data.items;
 
       console.log('getList ',res)
       
     })).subscribe();
   }
    
-  setAll(completed: boolean,permission:Permission) {
-    //this.allComplete = completed;
-    // if (this.permission.subtasks == null) {
-    //   return;
-    // }
-    this.permissionList.filter(p=>p.controllerName==permission.controllerName).forEach(t => (t.checked = completed));
+  setAll(completed: boolean,key:string) {
+  
+
+    console.log(' completed',completed)
+console.log(' filter', this.permissionModel.filter(p=>p.key==key).map(p=>(p.value)))
+    this.permissionModel.filter(p=>p.key==key).map(p=>p.value)[0].forEach(t => (
+      t.checked = completed));
+
+console.log(' filter2', this.permissionModel.filter(p=>p.key==key))
+
   }
 
   initroleForm() {
@@ -110,6 +115,11 @@ export class AddComponent {
 
 
 
+  getCamelCase(text:string)
+  {
+     return text[0].toUpperCase() + text.substring(1);
+
+  }
 
 
 

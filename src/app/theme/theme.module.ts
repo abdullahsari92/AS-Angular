@@ -9,7 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
 import { CoreModule } from '../core/core.module';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TranslatePipe } from '../core/pipes/translate.pipe';
 import {  PartialsModule } from '../Partials/partials.module';
 
 @NgModule({

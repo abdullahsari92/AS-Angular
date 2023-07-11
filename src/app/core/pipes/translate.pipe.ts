@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { LocalStorageService } from '../services/local-storage.service';
-import { TranslateService } from '../services/translate.service';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { TranslateService } from '../../services/translate.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Pipe({
