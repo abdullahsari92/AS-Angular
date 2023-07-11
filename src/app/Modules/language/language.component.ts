@@ -89,7 +89,7 @@ export class LanguageComponent {
     ];
   }
 
-
+//abdulah-test
   diller:any;
   addAll()
   {
