@@ -39,9 +39,14 @@ export class LanguageComponent {
 
     this.languagesService.getList().subscribe(res=>{
 
-      this.rowData = res.data.items;
+      if(res.success)
+      {
 
-      console.log('getList ',res)
+        this.rowData = res.data.items;
+
+        console.log('getList ',res)
+      }
+    
     },err =>{
       console.log(' errr',err)
     })

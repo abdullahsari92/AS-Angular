@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import { AddComponent } from './add/add.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'as-role',
@@ -36,7 +37,7 @@ this.agGridInit();
   getlist()
   {
 
-    this.roleService.getList().subscribe(res=>{
+    this.roleService.getList().pipe(tap()).subscribe(res=>{
 
       if(res.success)
       this.rowData = res.data.items;
