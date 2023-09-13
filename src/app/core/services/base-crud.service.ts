@@ -18,7 +18,7 @@ export abstract class BaseCrudService {
 
   getList(data:any=null): Observable<apiResult> {
 
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "list", data);
+    return this.httpClient.get<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "list");
   }
 
   save(body: any): Observable<apiResult> {
