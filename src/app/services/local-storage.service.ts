@@ -19,15 +19,24 @@ export class LocalStorageService {
 
 
   getItem(key: any): any {
-   
-    var deger = localStorage.getItem(key);
-    if(deger)
+
+    var value = localStorage.getItem(key) as any;
+    if(value)
     {
+      try {
+        var items = JSON.parse(value);
 
-      const items = JSON.parse(deger);
-      return items == null ? null : items.objectName;
+      return  items == null ? null : items.objectName;
 
+      } catch (err: any) {
+        // ⛔️ Uncaught SyntaxError: JSON.parse: unexpected character at
+        // line 1 column 2 of the JSON data
+        console.log(err.message);
+      }
+    
     }
+
+
   }
 
 

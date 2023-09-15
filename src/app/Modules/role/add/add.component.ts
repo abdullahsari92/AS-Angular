@@ -37,7 +37,7 @@ export class AddComponent {
 
 
   ) {
-    this.lang = this.localStorageService.getItem("languagesDefitions");
+    this.lang = this.localStorageService.getItem("languagesDefinitions");
 
   }
 

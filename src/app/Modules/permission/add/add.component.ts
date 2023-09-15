@@ -33,7 +33,7 @@ export class AddComponent {
 
 
   ) {
-    this.lang = this.localStorageService.getItem("languagesDefitions");
+    this.lang = this.localStorageService.getItem("languagesDefinitions");
 
   }
 
@@ -54,6 +54,8 @@ export class AddComponent {
       description: ["", Validators.compose([Validators.required])],
       actionName: [""],
       controllerName: ["", Validators.compose([Validators.required])],
+      sayi: [""],
+
    
 
     });
@@ -81,7 +83,7 @@ export class AddComponent {
   ObjectContorls() {
     const controls = this.permissionForm.controls;
 
-    var deger = Object.keys(controls).filter(m => m != "email_type_uid");
+    var deger = Object.keys(controls).filter(m => m != "sayi");
     return deger;
   }
 

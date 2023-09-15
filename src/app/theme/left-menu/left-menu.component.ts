@@ -10,7 +10,7 @@ import { TranslateService } from 'src/app/services/translate.service';
   styleUrls: ['./left-menu.component.scss']
 })
   
-export class LeftMenuComponent implements OnInit ,OnChanges {
+export class LeftMenuComponent implements OnInit , OnChanges {
   openedChildiren: any[] = [];
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() openSettingMenu: EventEmitter<any> = new EventEmitter();
@@ -26,16 +26,16 @@ export class LeftMenuComponent implements OnInit ,OnChanges {
       icon: 'home', root:true, name: 'Ana Sayfa',url:'admin/',noChild:true
     },
     {
-      icon: 'person', root:true, name: this.translate.getValue("TEXT.USERS"),url:'/admin/user',  noChild:true
+      icon: 'person', root:true, name: this.translate.getValue("TEXT.Users"),url:'/admin/user',  noChild:true
     },   
     {
-      icon: 'tune', root:true, name: this.translate.getValue("TEXT.PERMISSION"),url:'/admin/permission',noChild:true
+      icon: 'tune', root:true, name: this.translate.getValue("TEXT.Permissions"),url:'/admin/permission',noChild:true
     },
     {
-      icon: 'menu', root:true, name: this.translate.getValue("TEXT.MENU"),url:'/admin/menu',noChild:true
+      icon: 'menu', root:true, name: this.translate.getValue("TEXT.Menus"),url:'/admin/menu',noChild:true
     },
     {
-      icon: 'language', root:true, name: this.translate.getValue("TEXT.LANGUAGES"),url:'/admin/language',noChild:true
+      icon: 'language', root:true, name: this.translate.getValue("TEXT.Languages"),url:'/admin/language',noChild:true
     },
     {
       icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [

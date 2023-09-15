@@ -97,5 +97,30 @@ siteUrl ="https://fairscope.cevizyazilim.com/#/"
 	}
 
 
+  TocamelCase(str: string)
+  {
+
+    var i:number; 
+    
+
+          var key = str.split('.')[1] ?? str;
+    var kelimeler = key.split('_');  
+    str = '';
+    var bosluk = kelimeler.length;
+
+    for(i = 0 ;i<bosluk;i++) {
+
+      kelimeler[i] =kelimeler[i].substr(0,1).toLocaleUpperCase() + kelimeler[i].substr(1).toLocaleLowerCase();
+      
+        if(i==0) str += 'TEXT.'+ kelimeler[i];
+         if(i>0)  str +=  '_' + kelimeler[i];
+
+    }
+
+      return str;
+    
+
+  }
+
 
 }

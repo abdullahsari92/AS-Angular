@@ -37,7 +37,7 @@ this.agGridInit();
   getlist()
   {
 
-    this.roleService.getList().pipe(tap()).subscribe(res=>{
+    this.roleService.getList().subscribe(res=>{
 
       if(res.success)
       this.rowData = res.data.items;

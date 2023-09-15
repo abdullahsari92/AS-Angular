@@ -40,14 +40,14 @@ export class AppComponent implements OnInit {
 
   setLocalStorageLanguages() {	
 		return new Promise((resolve, reject) => {
-		if (this.isLanguagesVersionChange() || (this.localStorageService.getItem('languagesDefitions') === null)) {
+		if (this.isLanguagesVersionChange() || (this.localStorageService.getItem('languagesDefinitions') === null)) {
 			this.languagesService
 				.getList()
 				.pipe(
 					tap(res => {
 						if (res.success) {	
 
-							this.localStorageService.setItem("languagesDefitions", res.data.items);
+							this.localStorageService.setItem("languagesDefinitions", res.data.items);
 							this.localStorageService.setItem("langVersion", 10); //dilin version güncelleniyor.
 
 							if (!this.localStorageService.getItem("language")) {						

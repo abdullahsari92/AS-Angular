@@ -38,7 +38,7 @@ export class TranslateService implements OnInit {
 
     return new Promise<{}>((resolve, reject) => {
            
-        this.translation =  this.localStorageService.getItem("languagesDefitions");
+        this.translation =  this.localStorageService.getItem("languagesDefinitions");
       
      // console.log('translation',this.translation)
       Object.keys(this.translation).forEach((key:any) => {
@@ -56,11 +56,16 @@ export class TranslateService implements OnInit {
   {
     var lang =   this.localStorageService.getItem("language");
      
-    this.translation =  this.localStorageService.getItem("languagesDefitions");
+    this.translation =  this.localStorageService.getItem("languagesDefinitions");
+
+    console.log('translation ',this.translation)
+
 
     if(lang || this.translation)
     {
      var findLang = this.translation.find((p:any) =>p.keyword.toUpperCase() == key.toUpperCase())
+
+     console.log('findLang ',findLang)
       if(findLang)
       { 
         return  findLang[lang];
@@ -73,6 +78,7 @@ export class TranslateService implements OnInit {
   
     }
      
+    
   
 
   }

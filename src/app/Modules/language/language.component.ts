@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LanguagesService } from 'src/app/services/languages.service';
 import { AddComponent } from './add/add.component';
+import { AsSettingsService } from 'src/app/services/as-settings.service';
 
 @Component({
   selector: 'as-language',
@@ -19,7 +20,8 @@ export class LanguageComponent {
   constructor(
 
      private languagesService:LanguagesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private asSettingsService:AsSettingsService
 
   ) {
         
@@ -97,6 +99,11 @@ export class LanguageComponent {
 
     this.languagesService.getConfigAll().subscribe(res=>{
    
+      res.forEach((element:any) => {
+        
+        element.keyword =  this.asSettingsService.TocamelCase(element.keyword)
+      });
+
       this.languagesService.addAll(res).subscribe(res=>{
 
       });

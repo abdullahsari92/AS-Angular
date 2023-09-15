@@ -39,7 +39,7 @@ export class TranslatePipe implements PipeTransform {
     
     var lang =   this.localStorageService.getItem("language");
      
-    this.translation =  this.localStorageService.getItem("languagesDefitions");
+    this.translation =  this.localStorageService.getItem("languagesDefinitions");
 
     if(lang || this.translation)
     {
@@ -62,7 +62,7 @@ export class TranslatePipe implements PipeTransform {
     
     var lang =   this.localStorageService.getItem("language");
      
-    this.translation =  this.localStorageService.getItem("languagesDefitions");
+    this.translation =  this.localStorageService.getItem("languagesDefinitions");
 
     if(lang)
     {
