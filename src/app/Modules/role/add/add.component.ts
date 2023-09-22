@@ -9,7 +9,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { tap } from 'rxjs';
-import { PermissionModel } from 'src/app/Model/permission.model';
+import { ControllerCRUD, PermissionModel } from 'src/app/Model/permission.model';
+import { CRUDActionType } from 'src/app/Model/Enums/CRUDActionType.enum';
 
 @Component({
   selector: 'as-add',
@@ -18,13 +19,17 @@ import { PermissionModel } from 'src/app/Model/permission.model';
 })
 export class AddComponent {
 
-  permissionModel:PermissionModel[]=[];
+  permissionModelList:PermissionModel[]=[];
   lang: any
   roleForm!: FormGroup;
   currentCode: string = "";
   isActiveButon = "";
   statusLanguages: any[] = [];
   imgUrl:any;
+
+  CRUDActionType=CRUDActionType;
+  crudActionTypeList = this.asSettingsService.getSelectBoxByEnumType(CRUDActionType);
+
   constructor(private fb: FormBuilder,
     public asSettingsService: AsSettingsService,
     private localStorageService: LocalStorageService,
@@ -56,23 +61,56 @@ export class AddComponent {
   {
 
     this.roleService.getById(this.data.id).pipe(tap(res=>{
-      this.permissionModel = res.data.items;
+      this.permissionModelList = res.data.items;
 
+      this.permissionModelList.forEach(t => {
+
+        t.indeterminate = t.controllerCrudList.filter(p=>p.checked).length >0 && t.controllerCrudList.filter(p=>p.checked).length <4;
+       
+        
+            });
       console.log('getList ',res)
       
     })).subscribe();
   }
    
-  setAll(completed: boolean,key:string) {
+  setAll(completed: boolean,controllerName:string) {
   
 
-    console.log(' completed',completed)
-console.log(' filter', this.permissionModel.filter(p=>p.key==key).map(p=>(p.value)))
-    this.permissionModel.filter(p=>p.key==key).map(p=>p.value)[0].forEach(t => (
+    this.permissionModelList.filter(p=>p.controllerName==controllerName).map(p=>p.controllerCrudList)[0].forEach(t => (
       t.checked = completed));
+    this.permissionModelList.filter(p=>p.controllerName==controllerName).forEach(p=>{
+      p.checked =completed;
+      p.indeterminate = p.controllerCrudList.filter(p=>p.checked).length >0 && p.controllerCrudList.filter(p=>p.checked).length <4
+    }
+    );
 
-console.log(' filter2', this.permissionModel.filter(p=>p.key==key))
 
+  }
+
+  someComplete(permissionModel:PermissionModel):boolean
+  {
+
+   return permissionModel.controllerCrudList.filter(p=>p.checked).length >0 && permissionModel.controllerCrudList.filter(p=>p.checked).length <4;
+
+  }
+
+  actionCheckedSet(checked:any ,permission:ControllerCRUD,permissionModel:PermissionModel)
+  {
+console.log('permission ',permission)
+
+    this.permissionModelList.filter(p=>p.controllerName==permissionModel.controllerName).forEach(t => {
+
+t.controllerCrudList.filter(m=>m.crudActionType == permission.crudActionType)[0].checked = checked;
+t.indeterminate = t.controllerCrudList.filter(p=>p.checked).length >0 && t.controllerCrudList.filter(p=>p.checked).length <4;
+t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
+
+
+    });
+
+    // permissionModel.checked = permission.checked;
+    // permissionModel.indeterminate = permissionModel.controllerCrudList.filter(p=>p.checked).length >0 && permissionModel.controllerCrudList.filter(p=>p.checked).length <4
+ console.log('actionCheckedSet',this.permissionModelList)
   }
 
   initroleForm() {
@@ -199,9 +237,11 @@ console.log(' filter2', this.permissionModel.filter(p=>p.key==key))
 
   update() {
 
-    this.roleForm.get("ma_user_uid")?.setValue(this.data.user2);
+   
 
-    this.roleService.update(this.roleForm.value).subscribe(res => {
+
+    var roleUpdateModel = { PermissionModel :this.permissionModelList, RoleDto:this.roleForm.value };
+    this.roleService.update(roleUpdateModel).subscribe(res => {
 
       console.log('edituserProfile',res)
 

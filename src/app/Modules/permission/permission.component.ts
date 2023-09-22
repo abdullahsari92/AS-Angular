@@ -62,7 +62,7 @@ export class PermissionComponent implements OnInit {
   add(data:any)
   {
 
-    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'450px', height:'70%',maxHeight:"500px"});
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'550px', height:'75%',maxHeight:"600px"});
 
     dialogRef.afterClosed().subscribe((refData: any) => {
 
@@ -85,7 +85,11 @@ export class PermissionComponent implements OnInit {
       { field: 'name', headerName: this.translate.getValue("TEXT.Name"), minWidth: 130 },
       { field: 'controllerName', headerName: this.translate.getValue("TEXT.controllerName"), minWidth: 130 },
       { field: 'actionName', headerName: this.translate.getValue("TEXT.actionName"), minWidth: 130 },
-      { field: 'description', headerName: this.translate.getValue("TEXT.description"), minWidth: 130 },    
+      { field: 'description', headerName: this.translate.getValue("TEXT.description"), minWidth: 130 },   
+      { field: 'crudActionType', headerName: "CRUDActionType", minWidth: 130 },    
+      { field: 'createdByFullName', headerName: "Ekleyen", minWidth: 130 },    
+
+      
       { field: 'isApproved' ,   headerName:this.translate.getValue("TEXT.isApproved"),  minWidth: 150 ,cellRenderer:'changeStatus'},
       {field: 'id', headerName: "Ayarlar", minWidth: 175, cellRenderer: 'agGridActionComponent'}
       

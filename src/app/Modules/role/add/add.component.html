@@ -39,14 +39,14 @@
                            <div style="background-color:#f7f8fa; padding: 10px;">
 
                        
-                           <div class="example-section" *ngFor="let item of permissionModel"> 
+                           <div class="example-section" *ngFor="let item of permissionModelList"> 
                             <div class="example-list-section" style="text-align: left;" >
                               <mat-checkbox class="example-margin"
                                             [checked]="item.checked"
-                                            color="primary"
-                                            [indeterminate]="false"
-                                            (change)="setAll($event.checked,item.key)">
-                            {{item.key}}
+                                            color="primary"                                          
+                                            [indeterminate]="item.indeterminate"
+                                            (change)="setAll($event.checked,item.controllerName)">
+                            {{item.controllerName}}
                               </mat-checkbox>                        
                             </div>
 
@@ -55,10 +55,8 @@
                             <br>
                             <span class="example-list-section" style="text-align: left;margin-left: 30px;">
 
-
-                              <mat-checkbox class="example-margin" *ngFor="let permission of item.value"   [checked]="permission.checked" >{{permission.actionName | toTextCamelCase }} </mat-checkbox>
+                              <mat-checkbox class="example-margin" *ngFor="let permission of item.controllerCrudList" (change)="actionCheckedSet($event.checked,permission,item)"   [checked]="permission.checked" >{{ this.asSettingsService.getEnumKeyName(CRUDActionType,permission.crudActionType)}} </mat-checkbox>
                                           
-
                                 <!-- <li *ngFor="let subtask of item.value">
                                   <mat-checkbox [(ngModel)]="subtask.completed"
                                                 [color]="subtask.color"

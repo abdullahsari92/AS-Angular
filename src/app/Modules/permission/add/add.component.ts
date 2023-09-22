@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Permission } from 'src/app/Model/Entity/permission';
+import { CRUDActionType } from 'src/app/Model/Enums/CRUDActionType.enum';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { PermissionService } from 'src/app/services/permission.service';
@@ -23,6 +24,7 @@ export class AddComponent {
   isActiveButon = "";
   statusLanguages: any[] = [];
   imgUrl:any;
+  CRUDActionType=CRUDActionType;
   constructor(private fb: FormBuilder,
     public asSettingsService: AsSettingsService,
     private localStorageService: LocalStorageService,
@@ -54,9 +56,8 @@ export class AddComponent {
       description: ["", Validators.compose([Validators.required])],
       actionName: [""],
       controllerName: ["", Validators.compose([Validators.required])],
-      sayi: [""],
+      crudActionType: [""],  
 
-   
 
     });
 
@@ -83,7 +84,7 @@ export class AddComponent {
   ObjectContorls() {
     const controls = this.permissionForm.controls;
 
-    var deger = Object.keys(controls).filter(m => m != "sayi");
+    var deger = Object.keys(controls).filter(m => m != "crudActionType");
     return deger;
   }
 

@@ -10,7 +10,8 @@ export class ToTextCamelCasePipe implements PipeTransform {
 
         var i:number; 
     
-        var kelimeler = str.split('_');  
+
+        var kelimeler = str?.split('_');  
         str = '';
         var bosluk = kelimeler.length;
     

@@ -14,7 +14,7 @@
   
     <as-page-body>
   
-      <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)"> </as-custom-ag-grid>
+      <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)" (removeData)="deleteItem($event)"> </as-custom-ag-grid>
   
     </as-page-body>
   

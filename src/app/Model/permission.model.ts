@@ -1,7 +1,18 @@
 import { Permission } from "./Entity/permission";
 
-export interface PermissionModel {
-    key:string;
-    checked:boolean;
-    value:Permission[];
+export class PermissionModel {
+    controllerName:string ="";
+    checked:boolean=false;
+    indeterminate:boolean = false;
+    controllerCrudList:ControllerCRUD[] = [];
 }
+
+
+export interface ControllerCRUD {
+
+
+    checked:boolean;
+    crudActionType:number;
+
+}
+

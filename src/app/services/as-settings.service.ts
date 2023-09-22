@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { keyValue } from '../Model/keyValue';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,31 @@ siteUrl ="https://fairscope.cevizyazilim.com/#/"
 		return result;
 	}
 
+  
+
+
+  public getSelectBoxByEnumType(enumType:any): keyValue[] {
+
+    var keyValueList:keyValue[]=[];
+    var objectDeger =    Object.keys(enumType);
+    objectDeger.slice(objectDeger.length / 2).forEach(p=>{  
+      var keyValue:keyValue = {value:enumType[p],key:p,selected:false};
+      keyValueList.push(keyValue);        
+      })
+
+    return keyValueList;  
+  }
+
+
+  //enum key bigisini almak için, yani string olan tarafı almak için
+  public getEnumKeyName(enumType:any,value:any)
+  {
+
+    const indexOfS = Object.values(enumType).indexOf(value as unknown);
+		const key = Object.keys(enumType)[indexOfS];
+
+    return key;
+  }
 
   TocamelCase(str: string)
   {

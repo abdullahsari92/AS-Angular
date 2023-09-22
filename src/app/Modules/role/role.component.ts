@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import { AddComponent } from './add/add.component';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
+import Swal from 'sweetalert2';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: 'as-role',
@@ -18,7 +20,9 @@ export class RoleComponent implements OnInit {
   constructor(
     private activatedRoute:ActivatedRoute,
     private dialog:MatDialog,
-    private roleService:RoleService
+    private roleService:RoleService,
+    private translate: TranslateService,
+
   ) {   
 
   }
@@ -34,7 +38,7 @@ this.agGridInit();
   }
 
 
-  getlist()
+  getList()
   {
 
     this.roleService.getList().subscribe(res=>{
@@ -49,7 +53,7 @@ this.agGridInit();
 
   agGridInit() {
 
-    this.getlist();
+    this.getList();
 
 
     this.columnDefs = [
@@ -71,12 +75,38 @@ this.agGridInit();
 
     dialogRef.afterClosed().subscribe((refData: any) => {
 
-      this.getlist();
+      this.getList();
       if (!refData) {
         //burada modal kapanıyor
         return;
       }
     });
+
+  }
+
+  
+  deleteItem(data:any)
+  {
+
+        this.roleService.delete(data.id).pipe(tap((res:any)=>{
+          if(res.success)
+          {
+
+              this.getList();
+              Swal.fire({
+                title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              })
+
+          }
+
+        }),finalize(()=>{
+
+          
+        })).subscribe();
+
 
   }
 
