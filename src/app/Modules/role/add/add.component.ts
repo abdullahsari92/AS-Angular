@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoleComponent } from '../role.component';
 import { RoleService } from 'src/app/services/role.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Permission } from 'src/app/Model/Entity/permission';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from 'src/app/services/translate.service';
@@ -11,6 +10,9 @@ import { PermissionService } from 'src/app/services/permission.service';
 import { tap } from 'rxjs';
 import { ControllerCRUD, PermissionModel } from 'src/app/Model/permission.model';
 import { CRUDActionType } from 'src/app/Model/Enums/CRUDActionType.enum';
+import { Role } from 'src/app/Model/Entity/role';
+import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'as-add',
@@ -20,23 +22,25 @@ import { CRUDActionType } from 'src/app/Model/Enums/CRUDActionType.enum';
 export class AddComponent {
 
   permissionModelList:PermissionModel[]=[];
+  role:Role = new Role();
   lang: any
   roleForm!: FormGroup;
   currentCode: string = "";
   isActiveButon = "";
   statusLanguages: any[] = [];
   imgUrl:any;
-
+id!:string;
   CRUDActionType=CRUDActionType;
   crudActionTypeList = this.asSettingsService.getSelectBoxByEnumType(CRUDActionType);
 
   constructor(private fb: FormBuilder,
     public asSettingsService: AsSettingsService,
     private localStorageService: LocalStorageService,
-    public dialogRef: MatDialogRef<RoleComponent>,
+    // public dialogRef: MatDialogRef<RoleComponent>,
     private translate: TranslateService,
     private roleService:RoleService, 
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    private route:ActivatedRoute,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
     private permissionService:PermissionService,
 
 
@@ -48,27 +52,47 @@ export class AddComponent {
 
 
   ngOnInit(): void {
-    this.initroleForm();
-    this.statusLanguages = this.asSettingsService.statusLanguages;
+
+    this.route.paramMap.subscribe(params=>{
+
+        this.id = params.get("id")??"";   
+
+         this.getPermissionList(this.id);
+
+    })
+
+      this.initroleForm();
 
 
-    this.getPermissionList();
   }
 
 
 
-  getPermissionList()
+  getPermissionList(id:string)
   {
 
-    this.roleService.getById(this.data.id).pipe(tap(res=>{
-      this.permissionModelList = res.data.items;
+    this.roleService.getById(id).pipe(tap(res=>{
+      this.permissionModelList = res.data.permissionList;
+
+      this.role = res.data.roleDto;   
 
       this.permissionModelList.forEach(t => {
-
-        t.indeterminate = t.controllerCrudList.filter(p=>p.checked).length >0 && t.controllerCrudList.filter(p=>p.checked).length <4;
-       
-        
+        t.indeterminate = t.controllerCrudList.filter(p=>p.checked).length >0 && t.controllerCrudList.filter(p=>p.checked).length <4;      
             });
+            
+    if (this.role.id) {
+
+      this.roleForm.addControl("id", new FormControl());
+      const controls = this.roleForm.controls;
+  
+      Object.keys(controls).forEach(controlName => {
+
+        let data:any = this.role;
+        controls[controlName].setValue(data[controlName])
+      });
+
+
+    }
       console.log('getList ',res)
       
     })).subscribe();
@@ -125,21 +149,6 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
     });
 
 
-    if (this.data.id) {
-
-      console.log('gelenData', this.data)
-      this.roleForm.addControl("id", new FormControl());
-
-      const controls = this.roleForm.controls;
-
-  
-      Object.keys(controls).forEach(controlName => {
-
-        controls[controlName].setValue(this.data[controlName])
-      });
-
-
-    }
 
   }
 
@@ -162,7 +171,7 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
 
 
   save() {
-    if (this.data.id) {
+    if (this.id) {
 
       this.update();
     }
@@ -171,7 +180,6 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
       this.add();
 
     }
-
 
 
   }
@@ -192,15 +200,15 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
 
       if (res.success) {
 
-        this.dialogRef.close({
-          data: res.data
-        });
-        // Swal.fire({
-        //   title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
-        //   icon: 'success',
-        //   showConfirmButton: false,
-        //   timer: 2500
-        // })
+        // this.dialogRef.close({
+        //   data: res.data
+        // });
+        Swal.fire({
+          title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2500
+        })
       }
       else {      
         // Swal.fire({
@@ -240,25 +248,31 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
    
 
 
-    var roleUpdateModel = { PermissionModel :this.permissionModelList, RoleDto:this.roleForm.value };
+    var roleUpdateModel = { PermissionList :this.permissionModelList, RoleDto:this.roleForm.value };
     this.roleService.update(roleUpdateModel).subscribe(res => {
 
       console.log('edituserProfile',res)
 
       if (res.success) {
 
-      
+        Swal.fire({
+          title: this.translate.getValue("TXT_TRANSACTION_SUCCESSFUL"),
+          icon: 'success',
+          showConfirmButton: false,
+
+          timer: 2500
+        })
 
 
       }
       else {
-        // Swal.fire({
-        //   //title: this.translateService.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
-        //   icon: 'error',
-        //   html:this.translate.getValue(res.error.code) + "<br>" + this.asSettingsService.hataObjectGoster(res.error),
-        //   showConfirmButton: true,
+        Swal.fire({
+          //title: this.translateService.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+          icon: 'error',
+          html:res.message,
+          showConfirmButton: true,
         
-        // })
+        })
 
       }
     })

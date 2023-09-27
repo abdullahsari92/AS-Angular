@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import { AddComponent } from './add/add.component';
-import { finalize, tap } from 'rxjs';
+import { Subject, finalize, takeUntil, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { TranslateService } from 'src/app/services/translate.service';
 
@@ -17,14 +17,18 @@ export class RoleComponent implements OnInit {
   rowData:any;
   columnDefs:any;
   user:any;
+	private unsubscribeData: Subject<any>;
   constructor(
     private activatedRoute:ActivatedRoute,
     private dialog:MatDialog,
     private roleService:RoleService,
     private translate: TranslateService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+
 
   ) {   
-
+    this.unsubscribeData = new Subject();
   }
 
 
@@ -41,13 +45,15 @@ this.agGridInit();
   getList()
   {
 
-    this.roleService.getList().subscribe(res=>{
+    this.roleService.getList().pipe(tap(res=>{  
 
       if(res.success)
       this.rowData = res.data.items;
 
+      }),takeUntil(this.unsubscribeData),finalize(()=>{
+        this.cdr.markForCheck();
+  })).subscribe();
 
-    })
   }
 
 
@@ -71,16 +77,19 @@ this.agGridInit();
   add(data:any)
   {
 
-    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"700px"});
 
-    dialogRef.afterClosed().subscribe((refData: any) => {
+    this.router.navigate(['./detail/'+data.id], { relativeTo: this.activatedRoute });
 
-      this.getList();
-      if (!refData) {
-        //burada modal kapanıyor
-        return;
-      }
-    });
+    // const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"700px"});
+
+    // dialogRef.afterClosed().subscribe((refData: any) => {
+
+    //   this.getList();
+    //   if (!refData) {
+    //     //burada modal kapanıyor
+    //     return;
+    //   }
+    // });
 
   }
 
@@ -104,10 +113,14 @@ this.agGridInit();
 
         }),finalize(()=>{
 
+        this.cdr.markForCheck();
           
         })).subscribe();
 
 
   }
-
+  ngOnDestroy() {	
+		this.unsubscribeData.next(null);
+		this.unsubscribeData.unsubscribe();
+	    }
 }

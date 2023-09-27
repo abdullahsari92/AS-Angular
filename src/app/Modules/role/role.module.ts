@@ -11,8 +11,9 @@ import { ThemeModule } from 'src/app/theme/theme.module';
 const routes: Routes = [
 	
   {path:"",component:RoleComponent},
-  {path:"List",component:RoleComponent},
-  {path:"Add",component:AddComponent}
+  {path:"list",component:RoleComponent},
+  {path:"detail/:id",component:AddComponent}
+
 
 
 ];
