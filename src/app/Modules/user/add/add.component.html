@@ -4,15 +4,14 @@
     <div class="header" style="padding-bottom: 10px;"> 
     
       <div style="  margin: 0 -20px;">
-        <span *ngIf="!this.data.user2">{{'TEXT.ADD_NEW_CONTACT' | translate}} </span>
-        <span *ngIf="this.data.user2">{{'TEXT.EDIT_CONTACT_PROFILE' | translate}} </span>
+        <span >{{'TEXT.Add' | translate}} </span>
         <span [mat-dialog-close]="data.animal" style=" position: absolute;  top: 10px;right: -20px;">
           <mat-icon> close</mat-icon>
         </span>
       </div>
     </div>
-            <div class="manuelAdd" *ngIf="!this.data.user2">       
-                    <div class="" style="padding: 2%;">
+    <div class="content" fxLayout="row wrap">         
+  
 
                 
                         <form class="form text-center "  action="" [formGroup]="UserForm">
@@ -21,30 +20,37 @@
                             </div>
                             <br>
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{ "TEXT.adi" | translate}}</mat-label>
-                                <input matInput autocomplete="off" formControlName="name">
-                                <mat-error *ngIf="asSettinsService.isControlHasError('name','required',UserForm)">
+                                <mat-label>{{ "TEXT.Name" | translate}}</mat-label>
+                                <input matInput autocomplete="off" formControlName="firstName">
+                                <mat-error *ngIf="asSettinsService.isControlHasError('firstName','required',UserForm)">
                                     <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
                             </mat-form-field>
                                          
                  
-                            <mat-form-field appearance="outline"  style="width: 48%;">
-                                <mat-label>{{"TEXT.COMPANY_NAME" | translate}}</mat-label>
-                                <input matInput formControlName="company_name" autocomplete="off">
+                            <mat-form-field appearance="outline"  class="full-width">
+                                <mat-label>{{"TEXT.Surname" | translate}}</mat-label>
+                                <input matInput formControlName="lastName" autocomplete="off">
 
-                                <mat-error *ngIf="asSettinsService.isControlHasError('company_name','maxlength',UserForm)">
+                                <mat-error *ngIf="asSettinsService.isControlHasError('lastName','maxlength',UserForm)">
                                   <strong>{{ 'TEXT.MAX_LENGTH_FIELD' | translate }} 50</strong>
                                 </mat-error>
                             </mat-form-field>
 
+                            <mat-form-field appearance="outline"  class="full-width" >
+                                <mat-label>{{"TEXT.Email" | translate}}</mat-label>
+                                <input matInput formControlName="email" autocomplete="off">
 
-                            <mat-form-field appearance="outline" style="width: 48%;margin-left: 4%;">
-                                <mat-label>{{'TEXT.POSITION' | translate }}</mat-label>
-                                <input matInput autocomplete="off" formControlName="position">
-                                <mat-error *ngIf="asSettinsService.isControlHasError('position','maxlength',UserForm)">
-                                  <strong>{{ 'TEXT.MAX_LENGTH_FIELD' | translate }} 50</strong>
+                                <mat-error *ngIf="asSettinsService.isControlHasError('email','maxlength',UserForm)">
+                                  <strong>{{ 'TEXT.Email' | translate }} 50</strong>
                                 </mat-error>
+                                <mat-error *ngIf="asSettinsService.isControlHasError('email','email',UserForm)">
+                                    <strong>{{ 'TEXT.Email' | translate }} 50</strong>
+                                  </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline"  class="full-width" >
+                                <mat-label>{{"TEXT.Username" | translate}}</mat-label>
+                                <input matInput formControlName="username" autocomplete="off">
                             </mat-form-field>
                             <!-- <mat-form-field appearance="outline" class="full-width">
                                 <mat-label>{{'TEXT.COUNTRY' | translate }}</mat-label>
@@ -57,7 +63,6 @@
 
                         </form>
 
-                    </div>       
 
             </div>
 
@@ -66,7 +71,7 @@
 <div class="rightCrudBtn">
     <button mat-button [mat-dialog-close]="data.animal">{{'TEXT.CLOSE' | translate }}</button>
 
-    <button mat-button class="btnSave" type="submit" (click)="submit()">
+    <button mat-button class="btnSave" type="submit" (click)="save()">
        {{'TEXT.SAVE' | translate }}
     </button>     
 </div>

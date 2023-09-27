@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/Model/Entity/user';
 import { UserService } from 'src/app/services/user.service';
+import { AddComponent } from './add/add.component';
+import { finalize, takeUntil, tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { TranslateService } from 'src/app/services/translate.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoleService } from 'src/app/services/role.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'AS-user',
@@ -11,15 +20,26 @@ export class UserComponent implements OnInit {
 
   rowData:any;
   columnDefs:any;
-  user:any;
+  user:User = new User();
+	private unsubscribeData: Subject<any>;
+
   /**
    *
    */
+
   constructor(
 
-     private userService:UserService
+     private userService:UserService,
+     private activatedRoute:ActivatedRoute,
+     private dialog:MatDialog,
+     private translate: TranslateService,
+     private router: Router,
+     private cdr: ChangeDetectorRef,
+
+
   ) {
-        
+    this.unsubscribeData = new Subject();
+
   }
 
 
@@ -32,45 +52,35 @@ export class UserComponent implements OnInit {
   }
 
 
-  getlist()
+  getList()
   {
 
-    this.userService.getList().subscribe(res=>{
+    this.userService.getList().pipe(tap(res=>{  
 
+      if(res.success)
       this.rowData = res.data.items;
 
-      console.log('getList ',res)
-    },err =>{
-      console.log(' errr',err)
-    })
+      }),takeUntil(this.unsubscribeData)
+      ,finalize(()=>{
+        this.cdr.markForCheck();
+  })).subscribe();
   }
   
   
-  add(data:any)
+  editData(data:any)
   {
 
-    var user:any = {};
 
-    user.username="Ali";
-    user.FirstName="sarı";
-    user.LastName="sarı";
-    user.Password="xvdgd4";
-    user.Email="sar@gmail.com";
+    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"700px"});
 
-    this.user = user;
-return;
-    this.userService.add(user).subscribe(res=>{
+    dialogRef.afterClosed().subscribe((refData: any) => {
 
-      if(res.success)
-      {
-        this.getlist();
+      this.getList();
+      if (!refData) {
+        //burada modal kapanıyor
+        return;
       }
-      else
-      {
-        alert("hatalı \n " + res.message);
-      }
-      console.log(' Eklenen User: ',res)
-    })
+    });
   }
 
 
@@ -94,7 +104,7 @@ return;
       if(res.success)
 
       {
-        this.getlist();
+        this.getList();
       }
     })
 
@@ -103,7 +113,7 @@ return;
 
   agGridInit() {
 
-    this.getlist();
+    this.getList();
 
 
     this.columnDefs = [
@@ -117,6 +127,33 @@ return;
       },
     ];
   }
+  deleteItem(data:any)
+  {
+
+        this.userService.delete(data.id).pipe(tap((res:any)=>{
+          if(res.success)
+          {
+
+              this.getList();
+              Swal.fire({
+                title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              })
+
+          }
+
+        }),finalize(()=>{
+
+        this.cdr.markForCheck();
+          
+        })).subscribe();
 
 
+  }
+  ngOnDestroy() {
+		this.unsubscribeData.next(null);
+		this.unsubscribeData.unsubscribe();
+	}
 }

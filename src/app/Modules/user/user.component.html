@@ -2,7 +2,7 @@
   <as-page-header [title]="'TEXT.USERS'">
 
     <ng-container asPageTools>
-			<button (click)="add({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
+			<button (click)="editData({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
           <mat-icon>add</mat-icon>{{'TEXT.ADD' | translate }}
       </button>	
 		</ng-container>
@@ -12,7 +12,7 @@
 
   <as-page-body>
 
-    <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs"> </as-custom-ag-grid>
+    <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="editData($event)" (removeData)="deleteItem($event)"> </as-custom-ag-grid>
 
   </as-page-body>
 
