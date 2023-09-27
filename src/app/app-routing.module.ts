@@ -5,8 +5,14 @@ import { PrivateLayoutComponent } from './theme/layout/private-layout/private-la
 
 const routes: Routes = [
 
+
+  {path: 'auth', loadChildren: () => import('./Modules/auth/auth.module').then(m => m.AuthModule)},
+	{path: '', loadChildren: () => import('./Modules/auth/auth.module').then(m => m.AuthModule)},
+
   {  path:'admin', 
    component:PrivateLayoutComponent ,children:[   
+
+    
   
     {  path:'role/:contentTipi',   component:RoleComponent },
   
@@ -19,11 +25,7 @@ const routes: Routes = [
      {path:"language",loadChildren: () =>import('./Modules/language/language.module').then(m=>m.LanguageModule)},
      {path:"menu",loadChildren: () =>import('./Modules/menu/menu.module').then(m=>m.MenuModule)},
 
-     {path:"role",loadChildren: () =>import('./Modules/role/role.module').then(m=>m.RoleModule)},
-
-
-
-    
+     {path:"role",loadChildren: () =>import('./Modules/role/role.module').then(m=>m.RoleModule)},    
 
   ]},
   

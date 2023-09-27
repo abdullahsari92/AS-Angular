@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LanguagesService } from 'src/app/services/languages.service';
 import { AddComponent } from './add/add.component';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
+import Swal from 'sweetalert2';
+import { finalize, takeUntil, tap } from 'rxjs/operators';
+import { TranslateService } from 'src/app/services/translate.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'as-language',
@@ -14,6 +18,8 @@ export class LanguageComponent {
   rowData:any;
   columnDefs:any;
   user:any;
+	private unsubscribeData: Subject<any>;
+
   /**
    *
    */
@@ -21,9 +27,14 @@ export class LanguageComponent {
 
      private languagesService:LanguagesService,
     private dialog: MatDialog,
-    private asSettingsService:AsSettingsService
+    private asSettingsService:AsSettingsService,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
+
+
 
   ) {
+		this.unsubscribeData = new Subject();
         
   }
   
@@ -39,22 +50,19 @@ export class LanguageComponent {
   getList()
   {
 
-    this.languagesService.getList().subscribe(res=>{
-
+    this.languagesService.getList().pipe(tap(res=>{
+          
       if(res.success)
       {
+        this.rowData = res.data.items;  
+      }       
 
-        this.rowData = res.data.items;
-
-        console.log('getList ',res)
-      }
-    
-    },err =>{
-      console.log(' errr',err)
-    })
-  }
+    }),takeUntil(this.unsubscribeData),finalize(()=>{
+      this.cdr.markForCheck();
+    })).subscribe();
   
  
+  }
 
   add(data:any)
   {
@@ -110,4 +118,38 @@ export class LanguageComponent {
     
     })
   }
+
+
+  deleteItem(data:any)
+  {
+
+        this.languagesService.delete(data.id).pipe(tap((res:any)=>{
+          if(res.success)
+          {
+
+              this.getList();
+              Swal.fire({
+                title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              })
+
+          }
+
+        }),takeUntil(this.unsubscribeData),finalize(()=>{
+
+          
+        })).subscribe();
+
+
+  }
+
+  ngOnDestroy() {
+		//this.unsubscribe.forEach(sb => sb.unsubscribe());
+
+    console.log("ngOnDestroy")
+		this.unsubscribeData.next(null);
+		this.unsubscribeData.unsubscribe();
+	}
 }

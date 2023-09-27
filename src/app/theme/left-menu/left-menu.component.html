@@ -45,8 +45,15 @@
         <ng-container *ngFor="let menu of filteredMenu;">
             <div class="menu-item">
                 <ng-container  [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: menu}"></ng-container>
+
+              
+
             </div>
-        </ng-container>     
+        </ng-container>    
+        
+        
+        <img *ngIf="open" src="../../../assets/svg/auth-login.svg" height="150" alt="" style="margin-right: 12px; position: absolute; bottom: 0;">
+
     </div>
 </div>
 

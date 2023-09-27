@@ -1,0 +1,84 @@
+.body
+{
+
+    background-color:#fcfaf6;
+    background-size: contain;
+     padding-top:5%;
+     /* min-height: 800px; */
+     min-height: 100%;
+}
+
+
+.title{
+
+    margin-bottom: 80px;
+    font-size: 100px;
+    color:black;
+    font-weight: 900;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+.button
+{
+    text-align: center;
+
+}
+
+.actionButton
+{
+    background-color:  rgb(108, 191, 247);
+    -moz-border-radius:75px;
+    -webkit-border-radius: 75px;
+    padding: 4px 40px;
+}
+
+.textButton
+{
+
+    font-size: 14px;
+    color: rgb(108, 191, 247);
+}
+form{
+    padding: 5%;
+}
+
+.matcard mat-card {
+
+
+
+    -moz-border-radius:25px;
+    -webkit-border-radius: 25px;
+    -webkit-box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.3);
+    /* box-shadow: 0px 3px 3px 3px rgba(124, 121, 121, 0.3); */
+
+    box-shadow: 0px 2px 4px #88888829;
+  }
+
+
+mat-form-field {
+    width: 75%;
+
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #26B9ED!important;
+  }
+  
+
+/* burası tasarım inputlar farklı olacaksa açılacak  */
+
+
+/*
+  mat-form-field  mat-label  {
+    margin-left: 40px;
+  }
+   */
+    /* ::ng-deep .mat-form-field-outline-start {
+        border-radius: 10px 0 0 10px !important;
+         min-width:28px !important;
+      }
+      ::ng-deep .mat-form-field-outline-end {
+        border-radius: 0 10px 10px 0 !important;
+
+      }
+       */

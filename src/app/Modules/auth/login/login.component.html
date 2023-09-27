@@ -1,0 +1,69 @@
+<div class="matcard">
+  <mat-card>
+
+    <mat-card-header>
+  <span class="pageTitle">
+    {{'TEXT.Log_In' | translate }}
+
+  </span>
+
+    </mat-card-header>
+    <mat-card-content>
+      <div class="content" fxLayout="row wrap">
+        <form class="form text-center" action="" [formGroup]="loginForm">
+         
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{'TEXT.Email' | translate }}</mat-label>
+            <input matInput formControlName="email" autocomplete="off" formControlName="email">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"  class="full-width" >
+            <mat-label >{{'TEXT.Password' | translate }}</mat-label>
+            <input matInput  [type]="hide ? 'password' : 'text'" autocomplete="off" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-error *ngIf="!isLoginSuccess">
+            {{'TXT_ERROR_LOGIN_MESSAGE' | translate }}
+          </mat-error>
+
+          <mat-card-actions style="text-align: right;">      
+            <button mat-button color="primary" routerLink="../forgot-password" >{{'TXT_FORGET_PASSWORD' | translate }}</button>
+            <br>      
+          </mat-card-actions>
+
+
+          <!-- <button mat-raised-button color="primary" class="button text-center ">Giriş</button> -->
+          <mat-card-actions style="text-align: center;">
+            <button mat-button mat-raised-button type="submit" class="actionButton" color="primary" (click)="submit()">{{'TEXT.Log_In' | translate }}</button>
+            <br>
+          </mat-card-actions>
+        </form>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+
+
+<mat-card-actions style="text-align: center;">
+  <div style="margin-top: 20px;font-size: 18px;">
+      
+      {{'TXT_NOT_YET_MEMBER' | translate }}
+    
+      <button mat-button color="primary"  routerLink="../register"  class="textButton">{{'TEXT.Sign_Up' | translate }}</button>
+    
+  <br>
+  <br>
+
+  <br>
+
+  </div>
+  <br>
+</mat-card-actions>
