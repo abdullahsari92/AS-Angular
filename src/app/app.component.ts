@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MenuConfigService } from './core/services/menu-config.service';
 import { MenuConfig } from './core/config/menu.config';
 import { LocalStorageService } from './services/local-storage.service';
@@ -9,7 +9,9 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class AppComponent implements OnInit {
   title = 'as-Angular';
