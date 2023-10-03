@@ -71,7 +71,6 @@ export class AddComponent {
 
   
       Object.keys(controls).forEach(controlName => {
-
         controls[controlName].setValue(this.data[controlName])
       });
 

@@ -56,9 +56,7 @@ export class AddComponent implements OnInit {
       this.languageForm.addControl("id",new FormControl());
       const controls = this.languageForm.controls;
 
-      Object.keys(controls).forEach(controlName =>{
-          controls[controlName].setValue(this.data[controlName])
-        });
+       
 
 
     }
