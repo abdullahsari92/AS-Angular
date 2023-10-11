@@ -5,6 +5,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { LanguagesService } from './services/languages.service';
 import { finalize, takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
   constructor(private menuConfigService:MenuConfigService,
     private localStorageService:LocalStorageService,
     private languagesService:LanguagesService,
-    private cdf:ChangeDetectorRef
+    private cdf:ChangeDetectorRef,
+    private primengConfig: PrimeNGConfig
 
     ) {
 
@@ -35,7 +37,7 @@ export class AppComponent implements OnInit {
 		this.menuConfigService.loadConfigs(new MenuConfig().configs);
 
     this.setLocalStorageLanguages();
-
+    this.primengConfig.ripple = true;
   }
 
 

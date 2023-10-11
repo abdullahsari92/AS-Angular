@@ -10,7 +10,7 @@ import { TranslateService } from 'src/app/services/translate.service';
 @Component({
   selector: 'as-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.sass']
+  styleUrls: ['./role.component.scss']
 })
 export class RoleComponent implements OnInit {
 
@@ -19,11 +19,11 @@ export class RoleComponent implements OnInit {
   user:any;
 	private unsubscribeData: Subject<any>;
   constructor(
-    private activatedRoute:ActivatedRoute,
     private dialog:MatDialog,
     private roleService:RoleService,
     private translate: TranslateService,
     private router: Router,
+    private activatedRoute:ActivatedRoute,
     private cdr: ChangeDetectorRef,
 
 
@@ -74,7 +74,7 @@ this.agGridInit();
     ];
   }
 
-  add(data:any)
+  edit(data:any)
   {
 
 

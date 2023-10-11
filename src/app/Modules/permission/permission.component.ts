@@ -15,7 +15,6 @@ import { TranslateService } from 'src/app/services/translate.service';
 
 export class PermissionComponent implements OnInit {
 
-
   rowData:any;
   columnDefs:any;
   user:any;

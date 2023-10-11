@@ -4,7 +4,7 @@
     <as-page-header [title]="'TEXT.ROLE'">
   
       <ng-container asPageTools>
-              <button (click)="add({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
+              <button (click)="edit({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
             <mat-icon>add</mat-icon>{{'TEXT.ADD' | translate }}
         </button>	
           </ng-container>
@@ -14,7 +14,7 @@
   
     <as-page-body>
   
-      <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="add($event)" (removeData)="deleteItem($event)"> </as-custom-ag-grid>
+      <as-custom-ag-grid [rowData]="rowData" 	[columnDefs]="columnDefs" (editData)="edit($event)" (removeData)="deleteItem($event)"> </as-custom-ag-grid>
   
     </as-page-body>
   

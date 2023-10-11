@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { CustomAgGridComponent } from './ag-grid/custom-ag-grid/custom-ag-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
-import 'ag-grid-enterprise';
+// import 'ag-grid-enterprise';
 import { AgGridActionComponent } from './ag-grid/components-ag/ag-grid-action/ag-grid-action.component';
 import { ChangeStatusComponent } from './ag-grid/components-ag/change-status/change-status.component';
 import { FileViewerComponent } from './ag-grid/components-ag/file-viewer/file-viewer.component';
@@ -47,7 +47,9 @@ import { ToTextCamelCasePipe } from '../core/pipes/toTextCamelCase.pipe';
 	imports: [
 		CommonModule,
 		MaterialModule,
-		AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
+		AgGridModule
+		// // AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
+		// AgGridModule.withComponents([AgGridActionComponent])
 	],
 })
 export class PartialsModule {

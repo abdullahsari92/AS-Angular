@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'as-public-layout',
   templateUrl: './public-layout.component.html',
-  styleUrls: ['./public-layout.component.sass']
+  styleUrls: ['./public-layout.component.scss']
 })
 export class PublicLayoutComponent {
 

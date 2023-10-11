@@ -4,13 +4,14 @@ import { MenuComponent } from './menu.component';
 import { AddComponent } from './add/add.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PartialsModule } from 'src/app/Partials/partials.module';
+import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 
 const routes: Routes = [
 	
   {path:"",component:MenuComponent},
   {path:"List",component:MenuComponent},
-  {path:"Add",component:AddComponent}
+  {path:"detail/:id",component:AddComponent}
 
 
 ];
@@ -22,6 +23,7 @@ const routes: Routes = [
    RouterModule.forChild(routes),
     CommonModule,  
     PartialsModule,
+    SharedModule
     
   ]
 })

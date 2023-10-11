@@ -14,9 +14,9 @@ const themeName = "metronic";
 const rootPath = path.resolve(__dirname);
 const distPath = rootPath + "/src/assets";
 
-const entries = {
-	"css/style.angular": "./src/assets/sass/style.angular.scss"
-};
+// const entries = {
+// 	"css/style.angular": "./src/assets/sass/style.angular.scss"
+// };
 
 // remove older folders and files
 (async () => {
@@ -70,7 +70,7 @@ const mainConfig = function () {
 						MiniCssExtractPlugin.loader,
 						"css-loader",
 						{
-							loader: "sass-loader",
+							// loader: "sass-loader",
 							options: {
 								sourceMap: true,
 							}

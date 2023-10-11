@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'AS-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.sass']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
 
@@ -41,6 +41,7 @@ export class UserComponent implements OnInit {
     this.unsubscribeData = new Subject();
 
   }
+  
 
 
   ngOnInit(): void {

@@ -1,17 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-
-@import "/node_modules/ag-grid-community/dist/styles/ag-grid.css";
+// @import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import "/node_modules/ag-grid-community/styles/ag-grid.css";
 // @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
-@import "/node_modules/ag-grid-community/src/styles/ag-grid.scss";
+// @import "/node_modules/ag-grid-community/styles/ag-grid.scss";
 // @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
-@import "/node_modules/ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
+// @import "/node_modules/ag-grid-community/styles/ag-theme-material/sass/ag-theme-material-mixin";
 // @import "../node_modules/ag-grid-community/src/styles/ag-theme-bootstrap/sass/ag-theme-bootstrap.scss";
+@import "/node_modules/ag-grid-community/styles/ag-theme-material.min.css";
 
-.ag-theme-material {
-    @include ag-theme-material(( //odd-row-background-color: #CFD8DC;
-    padding: 10px));
-}
+// .ag-theme-material {
+//     @include ag-theme-material(( //odd-row-background-color: #CFD8DC;
+//     padding: 10px));
+//}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

@@ -51,7 +51,7 @@
 
     </div>
 
-    
+
     <div class="col  align-self-end" *ngIf="isSearch">
         <mat-form-field style="width: 100%;">
             <input matInput [(ngModel)]="filter" placeholder="Filter..." (keyup)="onFilterTextBoxChanged()">
@@ -64,12 +64,14 @@
 
     <ag-grid-angular #agGrid [style.height]="height" class="ag-theme-material" [rowData]="rowData"
         [pagination]="pagination" [columnDefs]="columnDefs" [animateRows]="true" [defaultColDef]="defaultColDef"
-        [autoGroupColumnDef]="autoGroupColumnDef" [frameworkComponents]="frameworkComponents"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [components]="frameworkComponents"
         [paginationPageSize]="paginationPageSize" [suppressMoveWhenRowDragging]="true" [rowDragManaged]="true"
         [allowContextMenuWithControlKey]="true" [getContextMenuItems]="getContextMenuItems" rowSelection="multiple"
         (sortChanged)="onSortChanged($event)" (gridReady)="onGridReady($event)" (rowDragEnd)="onRowDragEnd($event)"
         (columnMoved)="onColumnMoved()" (selectionChanged)="onSelectionChanged($event)">
     </ag-grid-angular>
+    <!-- [frameworkComponents]="frameworkComponents" -->
 
     <!-- geçici kaldırdım (sortChanged)="onSortChanged($event)" -->
 </div>

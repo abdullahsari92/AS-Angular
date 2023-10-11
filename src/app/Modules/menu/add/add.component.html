@@ -1,1 +1,67 @@
-<p>add works!</p>
+<as-page>
+    <as-page-header [title]="'TEXT.ADD'">
+  
+      <ng-container asPageTools>
+        <button (click)="save()" mat-raised-button color="primary"  matTooltip="{{'TEXT.SAVE' | translate }}">
+        <mat-icon>save</mat-icon>{{'TEXT.SAVE' | translate }}
+       </button>	
+      <button mat-button routerLink="../../" >{{'TEXT.CLOSE' | translate }}</button>
+  
+    </ng-container>
+    </as-page-header>
+  
+  
+    <as-page-body>
+
+        <form [formGroup]="form"> 
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="p-inputgroup">
+    
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-menu"></i>
+                        </span>
+                        <input pInputText placeholder="Username" formControlName="name" />
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                            
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">$</span> 
+                            <input type="text" pInputText placeholder="Price"  formControlName="description" />
+                            <span class="p-inputgroup-addon">.00</span>
+                        </div>
+                </div>
+        
+            </div>    
+                <div class="row">
+
+    
+                    <div class="col-lg-6">
+                                
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">www</span>
+                            <input type="text" pInputText placeholder="Website" />
+                        </div>
+                </div>
+               </div>
+
+
+      
+        </form>
+
+      
+        
+
+    </as-page-body>
+  
+  </as-page>
+  
+  
+  
+  
+  
+  
+  
