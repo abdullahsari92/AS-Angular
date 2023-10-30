@@ -21,6 +21,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
 import { OrderListModule } from 'primeng/orderlist';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ClaimsAuth } from 'src/app/core/directives/claims.directive';
 
 const primeNGModules = [
 
@@ -46,7 +47,7 @@ TreeModule
 
 @NgModule({
   declarations: [
-  
+    ClaimsAuth
   ],
   imports: [
     CommonModule,
@@ -64,7 +65,7 @@ TreeModule
     HttpClientModule,
     ReactiveFormsModule,  
     primeNGModules,
-
+    ClaimsAuth
 		
 
 

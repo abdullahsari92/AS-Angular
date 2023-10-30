@@ -5,11 +5,9 @@ import { PrivateLayoutComponent } from './layout/private-layout/private-layout.c
 import { PublicLayoutComponent } from './layout/public-layout/public-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from './material/material.module';
 import { MenuHorizontalComponent } from './menu-horizontal/menu-horizontal.component';
 import { CoreModule } from '../core/core.module';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { TranslatePipe } from '../core/pipes/translate.pipe';
 import {  PartialsModule } from '../Partials/partials.module';
 
 @NgModule({
@@ -20,7 +18,7 @@ import {  PartialsModule } from '../Partials/partials.module';
     CommonModule,   
    RouterModule,HttpClientModule,
    CoreModule,
-   PartialsModule
+   PartialsModule,
   ],
   exports: [
     MenuComponent,

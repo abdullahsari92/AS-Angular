@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { IdentityService } from './services/identity.service';
 
 
 @Injectable()
@@ -10,18 +11,31 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
 
 	headers: HttpHeaders | undefined;
-
+token:string="";
 	updatedRequest:any;
 	constructor(
 		private router: Router,
+		private identityService: IdentityService,
+
 	) {}
 
 
+	
+
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+		if (this.identityService.isLogged()) {
+			this.token = this.identityService.get();			
+		} else {
+			this.token = '';
+		}
+
 
 			this.headers = new HttpHeaders({
 				'Content-Type': 'application/json',
-				'Authorization': "Bearer "		
+				'Authorization': "Bearer " + this.token,
+				'key':"AFADAFS343FSFsfsfsfwefsfsffsfs"		
+
 			});
 
 			this.updatedRequest = request.clone({ headers: this.headers});

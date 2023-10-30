@@ -4,6 +4,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
 import { apiResult } from '../models/apiResult';
+import APIResponse from '../models/APIResponse';
+import { NameValue } from '../models/nameValue';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +47,13 @@ export abstract class BaseCrudService {
   
     return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "update", data);
   }
-  logo_upload(data: any): Observable<apiResult> {
   
-    return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "logo_upload", data);
+  getSelectedOptions(): Observable<APIResponse<NameValue[]>>
+  {
+    return this.httpClient.get<APIResponse<NameValue[]>>(this.asSettingsService.apiUrl + this.endpoint + "selectOption");
+
   }
-  
+
   
 
   filter(model: any): Observable<HttpResponse<apiResult>> {
