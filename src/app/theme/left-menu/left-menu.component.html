@@ -105,8 +105,8 @@
 
 
 <!-- sub-menu -->
-<ng-template #menuItemInnerTemplate let-item="item" >
-	    <div class="up"  [class.active]="isMenuActive(item)">    
+<ng-template #menuItemInnerTemplate let-item="item"  >
+	    <div class="up"  [class.active]="isMenuActive(item)" *authIf="item.claim">     
             <div [routerLink]="item.url" class="upMenu" (click)="menuAktif(item)">
         <!-- if menu item has icon -->
                 <div *ngIf="item.icon" class="menu-icon">

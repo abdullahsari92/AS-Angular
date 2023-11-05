@@ -100,7 +100,7 @@ export class PermissionComponent implements OnInit {
   deleteItem(data:any)
   {
 
-        this.permissionService.delete(data.id).pipe(tap((res:apiResult)=>{
+        this.permissionService.delete(data.id).pipe(tap((res:any)=>{
           if(res.success)
           {
 

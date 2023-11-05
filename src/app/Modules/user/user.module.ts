@@ -6,7 +6,6 @@ import { AddComponent } from './add/add.component';
 import { MaterialModule } from 'src/app/theme/material/material.module';
 import { ThemeModule } from 'src/app/theme/theme.module';
 import { PartialsModule } from 'src/app/Partials/partials.module';
-import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 const routes: Routes = [
 
@@ -25,7 +24,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     PartialsModule,
-    SharedModule
 
   ]
 })

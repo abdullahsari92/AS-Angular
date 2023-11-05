@@ -72,16 +72,40 @@ export class UserComponent implements OnInit {
   {
 
 
-    const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"700px"});
+console.log(' data',data) 
+   if(data.id)
+    {
+      this.userService.getById(data.id).pipe(tap(res=>{
 
-    dialogRef.afterClosed().subscribe((refData: any) => {
+        var data = res.data;
+        
+        const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"500px"});
 
-      this.getList();
-      if (!refData) {
-        //burada modal kapanıyor
-        return;
-      }
-    });
+        dialogRef.afterClosed().subscribe((refData: any) => {
+    
+          this.getList();
+          if (!refData) {
+            //burada modal kapanıyor
+            return;
+          }
+        });
+      })).subscribe();
+    }
+    else{
+      const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"500px"});
+
+      dialogRef.afterClosed().subscribe((refData: any) => {
+  
+        this.getList();
+        if (!refData) {
+          //burada modal kapanıyor
+          return;
+        }
+      });
+    }
+
+
+
   }
 
 

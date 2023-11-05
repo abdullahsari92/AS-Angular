@@ -4,6 +4,14 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MenuSubjectService } from 'src/app/services/subject/menu-subject.service';
 import { TranslateService } from 'src/app/services/translate.service';
 
+interface menu {
+  icon:string | undefined;
+  root:boolean | undefined;
+  name:string;
+  url:string;
+  claim:string | undefined;
+  submenu:menu[] | undefined;
+}
 @Component({
   selector: 'as-left-menu',
   templateUrl: './left-menu.component.html',
@@ -20,53 +28,53 @@ export class LeftMenuComponent implements OnInit , OnChanges {
 
 
   menuClass:string= 'imgYonDegistirme';
-  menu: any[] = [
+  menu: menu[] = [
   
     {
-      icon: 'home', root:true, name: 'Ana Sayfa',url:'admin/',noChild:true
+      icon: 'home', root:true, name: 'Ana Sayfa',url:'admin/',claim:'Home.View',submenu :undefined
     },
     {
-      icon: 'person', root:true, name: this.translate.getValue("TEXT.Users"),url:'/admin/user',  noChild:true
+      icon: 'person', root:true, name: this.translate.getValue("TEXT.Users"),url:'/admin/user',  claim:'User.View',submenu :undefined
     },   
     {
-      icon: 'tune', root:true, name: this.translate.getValue("TEXT.Permissions"),url:'/admin/permission',noChild:true
+      icon: 'tune', root:true, name: this.translate.getValue("TEXT.Permissions"),url:'/admin/permission',claim:'Permission.View',submenu :undefined
     },
     {
-      icon: 'menu', root:true, name: this.translate.getValue("TEXT.Menus"),url:'/admin/menu',noChild:true
+      icon: 'menu', root:true, name: this.translate.getValue("TEXT.Menus"),url:'/admin/menu',claim:'Menu.View',submenu :undefined
     },
     {
-      icon: 'language', root:true, name: this.translate.getValue("TEXT.Languages"),url:'/admin/language',noChild:true
+      icon: 'language', root:true, name: this.translate.getValue("TEXT.Languages"),url:'/admin/language',claim:'Language.View',submenu :undefined
     },
     {
-      icon: 'event',  root:true, name: 'Roller',url:'#', submenu: [
-        { name: 'Listele', url: '/admin/role' },      
-        { name: 'Ekle', url: '/settings/sms-settings' },      
+      icon: 'event',  root:true, name: 'Roller',url:'#',claim:'Role.View', submenu: [
+        { name: 'Listele', url: '/admin/role',claim:'Role.View' , root:false,submenu :undefined,icon:undefined },      
+        { name: 'Ekle', url: '/settings/sms-settings',claim:'Role.Add' ,root:false,submenu :undefined,icon:undefined},      
 
     ]
     },
     
-    {
-      icon: 'settings', root:true, name: 'Ayarlar',url:'#', 
+    // {
+    //   icon: 'settings', root:true, name: 'Ayarlar',url:'#', 
       
-        submenu: [
-                 { name: 'SMS Ayarları', url: '/settings/sms-settings' },  
-                 { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
+    //     submenu: [
+    //              { name: 'SMS Ayarları', url: '/settings/sms-settings' },  
+    //              { name: 'SMS Ayarları', url: '/settings/sms-settings' },      
 
-                 { name: 'Denge Ayarları', url: '/settings/sms-settings' },      
+    //              { name: 'Denge Ayarları', url: '/settings/sms-settings' },      
 
-                 { name: 'Rolle Ayarları', url: '/settings/sms-settings' },      
+    //              { name: 'Rolle Ayarları', url: '/settings/sms-settings' },      
 
-                 { name: 'Genel Ayarlar', url: '#',
-                      submenu: [
-                        { name: 'Arabalar', url: '/settings/sms-settings' },      
-                        { name: 'Temizlik', url: '/settings/sms-settings' },      
+    //              { name: 'Genel Ayarlar', url: '#',
+    //                   submenu: [
+    //                     { name: 'Arabalar', url: '/settings/sms-settings' },      
+    //                     { name: 'Temizlik', url: '/settings/sms-settings' },      
       
-                    ]
+    //                 ]
                 
-                },      
+    //             },      
 
-             ]
-    },  
+    //          ]
+    // },  
     // {
     //   icon: 'company', name: 'TEXT.COMPANY',url: 'fair/company/list',noChild:true
     // },
@@ -250,11 +258,11 @@ console.log('SelectedMenu ',this.SelectedMenu)
         if (!list.includes(element))
           list.push(element)
       }
-      element.children.forEach((child:any) => {
-        if (child.name.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) >= 0) {
-          if (!list.includes(element))
-            list.push(element)        }
-      });
+      // element.children.forEach((child:any) => {
+      //   if (child.name.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) >= 0) {
+      //     if (!list.includes(element))
+      //       list.push(element)        }
+      // });
     })
     this.filteredMenu = list;
   }

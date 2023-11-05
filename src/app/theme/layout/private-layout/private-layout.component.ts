@@ -3,7 +3,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { TokenModel } from 'src/app/Model/tokenModel';
+import { AuthModel } from 'src/app/Model/auth.model';
 import { TutoriolModel } from 'src/app/Model/tutoriolModel';
 import { MenuConfigService } from 'src/app/core/services/menu-config.service';
 import { AsSettingsService } from 'src/app/services/as-settings.service';
@@ -19,7 +19,6 @@ interface LanguageFlag {
   flag: string;
   active?: boolean;
 }
-
 @Component({
   selector: 'app-private-layout',
   templateUrl: './private-layout.component.html',
@@ -80,7 +79,7 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
   appPadding: string = "14rem";
   isActiveSearch=false;
   companyList: any[] = [];
-  tokenModel: TokenModel = new TokenModel();
+  authModel: AuthModel = new AuthModel();
   activeLanguage: any;
   isSearch = false;
  // @ViewChild('notification') elNotification!: ElementRef;
@@ -116,7 +115,7 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
 
 
-    //this.getTokenModel();
+    //this.getAuthModel();
 
     this.activeLanguage = this.languages.find(p => p.lang == 'tr')
    
@@ -211,9 +210,9 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
 
   }
 
-  getTokenModel() {
+  getAuthModel() {
 
-    this.tokenModel = this.localStorageService.getItem("tokenModel") as TokenModel;
+    this.authModel = this.localStorageService.getItem("AuthModel") as AuthModel;
 
 
   }
@@ -263,5 +262,10 @@ export class PrivateLayoutComponent implements AfterViewInit, OnInit {
       this.router.navigateByUrl('/');
     
 
+  }
+  logOut()
+  {
+
+    this.identityService.logOut();
   }
 }

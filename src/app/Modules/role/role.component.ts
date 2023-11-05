@@ -77,8 +77,9 @@ this.agGridInit();
   edit(data:any)
   {
 
+    var id = data.id ?? 0;
 
-    this.router.navigate(['./detail/'+data.id], { relativeTo: this.activatedRoute });
+    this.router.navigate(['./detail/'+id], { relativeTo: this.activatedRoute });
 
     // const dialogRef = this.dialog.open(AddComponent, { data,minWidth:"340px",width:'900px', height:'80%',maxHeight:"700px"});
 

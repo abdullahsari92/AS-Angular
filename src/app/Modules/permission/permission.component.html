@@ -4,7 +4,7 @@
   <as-page-header [title]="'TEXT.PERMISSION'">
 
     <ng-container asPageTools>
-			<button (click)="add({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}">
+			<button (click)="add({ data: {}})" mat-raised-button color="primary" matTooltip="{{'TEXT.ADD' | translate }}" *authIf="'Permission.Add'">
           <mat-icon>add</mat-icon>{{'TEXT.ADD' | translate }}
       </button>	
 

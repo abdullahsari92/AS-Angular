@@ -44,7 +44,7 @@
           </button>
         </mat-menu>
   
-        <!-- <app-tutoriol [tutoriolModel]="tutoriolModel" [userName]="tokenModel.user.name" (change)="tutoriolChange($event)"
+        <!-- <app-tutoriol [tutoriolModel]="tutoriolModel" [userName]="authModel.user.name" (change)="tutoriolChange($event)"
           (close)="istutoriol=false" *ngIf="istutoriol"> </app-tutoriol> -->
   
         <span #elementLang>
@@ -65,12 +65,12 @@
         <span #elementProfile>
   
           <button mat-button [matMenuTriggerFor]="menu">
-            <span style="font-size: 18px;">{{ this.tokenModel?.user?.name }} </span>
-            <span class="harfLogo" *ngIf="!this.tokenModel.user.profile_photo_file_uid">
-              {{basHarfLogo(tokenModel.user.name)}} </span>
+            <span style="font-size: 18px;">{{ this.authModel?.fullName }} </span>
+            <span class="harfLogo" *ngIf="!this.authModel.profile_photo_file_uid">
+              {{basHarfLogo(authModel.fullName)}} </span>
   
-            <img [src]="asSettingsService.fileBaseUrlOrjinal+tokenModel.user.profile_photo_file_uid" alt=""
-              *ngIf="this.tokenModel.user.profile_photo_file_uid" width="50px" height="50px" style="border-radius: 100%;">
+            <img [src]="asSettingsService.fileBaseUrlOrjinal+authModel.profile_photo_file_uid" alt=""
+              *ngIf="this.authModel.profile_photo_file_uid" width="50px" height="50px" style="border-radius: 100%;">
   
           </button>
         </span>
@@ -89,7 +89,7 @@
             <mat-icon>settings</mat-icon>
             <span>{{'TEXT.ACCOUNT_SETTING' |translate  }}</span>
           </button>
-          <a mat-menu-item routerLink="/" >
+          <a mat-menu-item routerLink="/" (click)="logOut()">
             <mat-icon>exit_to_app</mat-icon>
             <span>{{'TEXT.LOG_OUT'|translate  }} </span>
           </a>
@@ -117,11 +117,11 @@
           <span #elementProfile style="position: absolute;   top: 10px; right: 0;"> 
             <button mat-button [matMenuTriggerFor]="menu">
   
-              <span class="harfLogo" *ngIf="!this.tokenModel.user.profile_photo_file_uid">
-                {{basHarfLogo(tokenModel.user.name)}}
+              <span class="harfLogo" *ngIf="!this.authModel.profile_photo_file_uid">
+                {{basHarfLogo(authModel.fullName)}}
               </span>
-              <img [src]="asSettingsService.fileBaseUrlOrjinal+tokenModel.user.profile_photo_file_uid" alt=""
-                *ngIf="this.tokenModel.user.profile_photo_file_uid" width="50px" height="50px"
+              <img [src]="asSettingsService.fileBaseUrlOrjinal+authModel.profile_photo_file_uid" alt=""
+                *ngIf="this.authModel.profile_photo_file_uid" width="50px" height="50px"
                 style="border-radius: 100%;">
   
             </button>
@@ -150,7 +150,7 @@
           <div class="col-lg-12"  [@openClose]="headerMobilOpen ? 'open' : 'closed'"  [class.headerMobil_sub_icon_open]="headerMobilOpen"  style="text-align: center; padding: 15px; ">
   
             <div style="text-align: center;">
-              <span style="font-size: 18px;color: white;">{{ this.tokenModel?.user?.name }} </span>
+              <span style="font-size: 18px;color: white;">{{ this.authModel?.fullName }} </span>
     
             </div>
   

@@ -17,6 +17,7 @@ import { PageComponent } from './Content/page/page.component';
 import { PageHeaderComponent } from './Content/page/page.header.component';
 import { PageBodyComponent } from './Content/page/page.body.component';
 import { ToTextCamelCasePipe } from '../core/pipes/toTextCamelCase.pipe';
+import { SharedModule } from '../theme/shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import { ToTextCamelCasePipe } from '../core/pipes/toTextCamelCase.pipe';
 		ImgUploadComponent,
 		FileUploadAllComponent,
 		MaterialModule,
+		SharedModule,
 		PageComponent,
 		PageHeaderComponent,
 		PageBodyComponent
@@ -47,7 +49,8 @@ import { ToTextCamelCasePipe } from '../core/pipes/toTextCamelCase.pipe';
 	imports: [
 		CommonModule,
 		MaterialModule,
-		AgGridModule
+		AgGridModule,
+		SharedModule
 		// // AgGridModule.withComponents([AgGridActionComponent,ChangeStatusComponent,FileViewerComponent])
 		// AgGridModule.withComponents([AgGridActionComponent])
 	],

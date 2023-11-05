@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { AsSettingsService } from './as-settings.service';
 import { apiResult } from '../core/models/apiResult';
+import APIResponse from '../core/models/APIResponse';
+import { AuthModel } from '../Model/auth.model';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +15,10 @@ headers:any
   constructor(
    private asSettingsService: AsSettingsService,
     private http: HttpClient,
+    private localStorageService:LocalStorageService
   ) { }
 
-  login(loginmodel:any): Observable<apiResult> {
+  login(loginmodel:any): Observable<APIResponse<AuthModel>> {
 
 
     
@@ -24,17 +28,24 @@ headers:any
 
     var httpOpt = {
       headers:new HttpHeaders({
-        "Key":"key",
-        "Req-Time":regTime.toString(),       
-      
+				'Content-Type': 'application/json',
+        "Key":"AFADAFS343FSFsfsfsfwefsfsffsfs",      
       })
     }
-      //loginmodel.key = sha512(loginmodel.eposta+loginmodel.sifre+"jy7qvxqt2qxtc8d7rmx39xacm6hzhm69c5danpvt");
-
-      return this.http.post<apiResult>(this.asSettingsService.apiUrl+'user/login', loginmodel,httpOpt);
+      return this.http.post<APIResponse<AuthModel>>(this.asSettingsService.apiUrl+'auth/login', loginmodel,httpOpt);
 
     
   }
+
+  checkClaim(claim: string) {
+    var authModel = this.localStorageService.getItem('authModel') as AuthModel;
+    var claims = authModel.claims;
+    if (claims != null) {
+      return claims.includes(claim);
+    }
+    return false;
+  }
+
 
   resetPassword(resetModel:any): Observable<apiResult> {
 

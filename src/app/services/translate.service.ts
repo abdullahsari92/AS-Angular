@@ -58,14 +58,12 @@ export class TranslateService implements OnInit {
      
     this.translation =  this.localStorageService.getItem("languagesDefinitions");
 
-    console.log('translation ',this.translation)
 
 
     if(lang || this.translation)
     {
      var findLang = this.translation.find((p:any) =>p.keyword.toUpperCase() == key.toUpperCase())
 
-     console.log('findLang ',findLang)
       if(findLang)
       { 
         return  findLang[lang];

@@ -28,9 +28,9 @@ export abstract class BaseCrudService {
     return this.httpClient.post<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "save", body);
   }
 
-  getById(id: string): Observable<apiResult> {
+  getById(id: string): Observable<APIResponse<any>> {
   
-    return this.httpClient.get<apiResult>(this.asSettingsService.apiUrl + this.endpoint + "getById/" + id);
+    return this.httpClient.get<APIResponse<any>>(this.asSettingsService.apiUrl + this.endpoint + "getById/" + id);
   }
 
   delete(id: string):Observable<apiResult>{

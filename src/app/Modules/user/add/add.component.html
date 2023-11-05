@@ -1,6 +1,19 @@
 <div class="modalBody">
 
 
+                                          
+  <div class="card flex flex-wrap gap-3">
+    <div class="flex-auto">
+        <label for="blockspace" class="font-bold block mb-2"> {{ "TEXT.Name" | translate}} </label>
+        <input pInputText id="blockspace"  pKeyFilter="alphanum" class="w-full" />
+    </div>
+    <div class="flex-auto">
+      <label for="blockspace" class="font-bold block mb-2"> {{ "TEXT.Surname" | translate}} </label>
+      <input pInputText id="blockspace"   pKeyFilter="alphanum" class="w-full" />
+    </div>
+</div>
+ 
+
     <div class="header" style="padding-bottom: 10px;"> 
     
       <div style="  margin: 0 -20px;">
@@ -10,37 +23,50 @@
         </span>
       </div>
     </div>
-    <div class="content" fxLayout="row wrap">         
-  
-
-                
-                        <form class="form text-center "  action="" [formGroup]="UserForm">
-                            <div class=" text-center">
-                                <!-- <app-img-upload [imgURL]="imgUrl" controlName="file_data" typeName="file_ext" ></app-img-upload> -->
+    <div class="">   
+                        <form action="" [formGroup]="UserForm">
+                            <div class=" text-center">     
+                              <p-multiSelect [options]="roleList" 
+                              formControlName ="roleIds" optionLabel="name" 
+                              [style]="{ minWidth: '200px', minHeight: '44px' ,padding:'0'}"
+                              [placeholder]="'TEXT.Selected' | translate"
+                              optionValue="value"></p-multiSelect>
                             </div>
                             <br>
-                            <mat-form-field appearance="outline" class="full-width">
+                            <!-- <mat-form-field appearance="outline" class="width50">
                                 <mat-label>{{ "TEXT.Name" | translate}}</mat-label>
                                 <input matInput autocomplete="off" formControlName="firstName">
                                 <mat-error *ngIf="asSettinsService.isControlHasError('firstName','required',UserForm)">
                                     <strong>{{ 'TEXT.Required' | translate }}</strong>
                                 </mat-error> 
-                            </mat-form-field>
+                            </mat-form-field> -->
                                          
+                          <div class="card flex flex-wrap gap-3">
+                            <div class="flex-auto">
+                                <label for="blockspace" class="font-bold block mb-2"> {{ "TEXT.Name" | translate}} </label>
+                                <input pInputText id="blockspace" formControlName="firstName"  class="w-full" />
+                            </div>
+                            <div class="flex-auto">
+                              <label for="blockspace" class="font-bold block mb-2"> {{ "TEXT.Surname" | translate}} </label>
+                              <input pInputText id="blockspace" formControlName="lastName"  class="w-full" />
+                            </div>
+                        </div>
+                        
+
+<!--                     
                  
-                            <mat-form-field appearance="outline"  class="full-width">
+                            <mat-form-field appearance="outline"  class="width50">
                                 <mat-label>{{"TEXT.Surname" | translate}}</mat-label>
                                 <input matInput formControlName="lastName" autocomplete="off">
 
                                 <mat-error *ngIf="asSettinsService.isControlHasError('lastName','maxlength',UserForm)">
                                   <strong>{{ 'TEXT.MAX_LENGTH_FIELD' | translate }} 50</strong>
                                 </mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
-                            <mat-form-field appearance="outline"  class="full-width" >
+                            <mat-form-field appearance="outline"  class="width50" >
                                 <mat-label>{{"TEXT.Email" | translate}}</mat-label>
                                 <input matInput formControlName="email" autocomplete="off">
-
                                 <mat-error *ngIf="asSettinsService.isControlHasError('email','maxlength',UserForm)">
                                   <strong>{{ 'TEXT.Email' | translate }} 50</strong>
                                 </mat-error>
@@ -48,19 +74,22 @@
                                     <strong>{{ 'TEXT.Email' | translate }} 50</strong>
                                   </mat-error>
                             </mat-form-field>
-                            <mat-form-field appearance="outline"  class="full-width" >
+                            <mat-form-field appearance="outline"  class="width50" >
                                 <mat-label>{{"TEXT.Username" | translate}}</mat-label>
                                 <input matInput formControlName="username" autocomplete="off">
                             </mat-form-field>
-                            <!-- <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>{{'TEXT.COUNTRY' | translate }}</mat-label>
-                                <mat-select formControlName="country_iso_code_2">
-                                    <mat-option *ngFor="let country of countriesList" [value]="country.iso_code_2">
-                                        {{country.name}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field> -->
 
+                            <div class="width50">
+
+                              <mat-checkbox class="example-margin"  (change)="actionCheckedSet($event.checked)" formControlName="isApproved"   [checked]="UserForm.value.checked" >  {{'TEXT.Status' | translate }} </mat-checkbox>
+
+                     
+                            </div>
+                 
+                
+           
+
+           
                         </form>
 
 

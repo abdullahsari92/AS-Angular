@@ -29,7 +29,7 @@ export class AddComponent {
   isActiveButon = "";
   statusLanguages: any[] = [];
   imgUrl:any;
-id!:string;
+id:string="";
   CRUDActionType=CRUDActionType;
   crudActionTypeList = this.asSettingsService.getSelectBoxByEnumType(CRUDActionType);
 
@@ -55,9 +55,15 @@ id!:string;
 
     this.route.paramMap.subscribe(params=>{
 
-        this.id = params.get("id")??"";   
+        this.id = params.get("id") ??"0";   
 
-         this.getPermissionList(this.id);
+        console.log('     this.id',    this.id)
+        if(parseInt(this.id))
+        {
+          console.log(' getPermissionList')
+          this.getPermissionList(this.id);
+
+        }
 
     })
 
@@ -171,7 +177,7 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
 
 
   save() {
-    if (this.id) {
+    if (parseInt(this.id)) {
 
       this.update();
     }
@@ -185,6 +191,7 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
   }
 
   add() {
+    console.log(' add girdi',)
 		const controls = this.roleForm.controls;
 
     if (this.roleForm.invalid) {
@@ -194,15 +201,8 @@ t.checked = t.controllerCrudList.filter(p=>p.checked).length >0;
 			return;
 		}
 
-
     this.roleService.add(this.roleForm.value).subscribe(res => {
-      console.log('manual_contact_add',res)
-
       if (res.success) {
-
-        // this.dialogRef.close({
-        //   data: res.data
-        // });
         Swal.fire({
           title: this.translate.getValue("TEXT.TRANSACTION_SUCCESSFUL"),
           icon: 'success',

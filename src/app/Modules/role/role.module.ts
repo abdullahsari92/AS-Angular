@@ -12,7 +12,9 @@ const routes: Routes = [
 	
   {path:"",component:RoleComponent},
   {path:"list",component:RoleComponent},
-  {path:"detail/:id",component:AddComponent}
+  {path:"detail/:id",component:AddComponent},
+  {path:"detail",component:AddComponent}
+
 
 
 

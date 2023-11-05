@@ -6,6 +6,9 @@ import { TranslateService } from 'src/app/services/translate.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { UserComponent } from '../user.component';
+import { RoleService } from 'src/app/services/role.service';
+import { tap } from 'rxjs';
+import { NameValue } from 'src/app/core/models/nameValue';
 
 @Component({
   selector: 'as-add',
@@ -26,6 +29,8 @@ export class AddComponent implements OnInit {
     private dialog: MatDialog,
     private translate: TranslateService,
     private userService:UserService,
+    private roleService:RoleService,
+
 
 
     public dialogRef: MatDialogRef<UserComponent>,
@@ -36,6 +41,9 @@ export class AddComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+
+
     this.initRegisterForm();
   }
 
@@ -43,33 +51,58 @@ export class AddComponent implements OnInit {
 
 
    // this.getListSector();
+   this.getRoleSelectedOptions();
     this.UserForm = this.fb.group({
       firstName: ["", Validators.compose([Validators.required])],
       lastName: ["", Validators.compose([Validators.required])],
       email: ["", Validators.compose([Validators.required,Validators.email])],
       username: [""],
       password: ["", Validators.compose([Validators.required])],   
+      isApproved:[false],
+      roleIds:[""]
+
     });
 
 
     if (this.data.id) {
 
+      
+      console.log('data ',this.data)
       this.UserForm.addControl("id", new FormControl());
 
       const controls = this.UserForm.controls;
-
  
       Object.keys(controls).forEach(controlName => {
 
         controls[controlName].setValue(this.data[controlName])
       });
    
-
+console.log(' this.UserForm.value;',this.UserForm.value)
+      
 
     }
 
   }
 
+  roleList:NameValue[]=[];
+  getRoleSelectedOptions()
+  {
+
+    this.roleService.getSelectedOptions().pipe(tap(res=>{
+
+
+      if(res.success)
+      {
+        this.roleList =  res.data;
+      }
+      
+    })).subscribe();
+
+  }
+  actionCheckedSet(event:any)
+  {
+
+  }
 
   save() {
     if (this.data.id) {
